@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main # O master, según tu rama en GitHub
+
+media_folder: "assets/uploads" # Dónde se guardarán las fotos subidas
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "productos"
+    label: "Productos de la Tienda"
+    folder: "contenido/productos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre del Producto", name: "title", widget: "string" }
+      - { label: "Precio", name: "precio", widget: "number", value_type: "float" }
+      - { label: "Categoría", name: "categoria", widget: "select", options: ["Guantes", "Vendas", "Equipamiento"] }
+      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Descripción", name: "body", widget: "markdown" }
