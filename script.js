@@ -223,20 +223,53 @@ function cambiarCantidad(delta) {
 }
 
 // ==========================================
-// 6. PROCESO DE COMPRA (WHATSAPP)
+// 
 // ==========================================
-function procesarPago() {
-  if (!modeloSeleccionado) return;
+// 6. PROCESO DE COMPRA AUTOMATIZADO
+// ==========================================
+async function procesarPago() {
+  if (!modeloSeleccionado) {
+    alert("Por favor selecciona un modelo antes de continuar.");
+    return;
+  }
 
-  const numeroTelefono = "593900000000"; // Reemplazar con el número de WhatsApp oficial de CBK
-  const mensaje = `¡Hola Casa Boxing KO! 🥊%0ADeseo realizar el siguiente pedido:%0A%0A` +
-    `• *Producto:* ${modeloSeleccionado.nombre}%0A` +
-    `• *Precio:* ${modeloSeleccionado.precio}%0A` +
-    `• *Color:* ${colorSeleccionado}%0A` +
-    `• *Medida/Talla:* ${medidaSeleccionada}%0A` +
-    `• *Cantidad:* ${cantidadSeleccionada}%0A%0A` +
-    `Quedo a la espera de sus datos de confirmación.`;
+  // 1. Recopilar datos del cliente (puedes tomar estos datos desde un modal/formulario)
+  const datosCliente = {
+    nombre: document.getElementById("clienteNombre")?.value || "Cliente",
+    email: document.getElementById("clienteEmail")?.value || "cliente@email.com",
+    telefono: document.getElementById("clienteTelefono")?.value || "",
+    direccion: document.getElementById("clienteDireccion")?.value || "Retiro en local"
+  };
 
-  window.open(`https://wa.me/${numeroTelefono}?text=${mensaje}`, "_blank");
+  // 2. Estructurar la orden
+  const orden = {
+    producto: modeloSeleccionado.nombre,
+    precio: modeloSeleccionado.precio,
+    color: colorSeleccionado,
+    medida: medidaSeleccionada,
+    cantidad: cantidadSeleccionada,
+    total: modeloSeleccionado.precio * cantidadSeleccionada,
+    cliente: datosCliente,
+    fecha: new Date().toISOString()
+  };
+
+  try {
+    // 3. Enviar orden a tu servidor o webhook de automatización (Zapier / Make / Netlify Functions)
+    const respuesta = await fetch("https://tu-servidor-o-webhook.com/api/pedidos", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(orden)
+    });
+
+    if (respuesta.ok) {
+      alert("¡Pedido registrado exitosamente! Te hemos enviado un correo con la confirmación.");
+      // Redirigir a página de agradecimiento
+      window.location.href = "/gracias.html";
+    } else {
+      throw new Error("Error al procesar el pedido.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Hubo un problema al procesar tu compra. Por favor intenta nuevamente.");
+  }
 }
-
