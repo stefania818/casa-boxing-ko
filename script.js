@@ -305,3 +305,51 @@ async function procesarPago() {
     alert("Hubo un problema al procesar tu compra. Por favor intenta nuevamente.");
   }
 }
+// ==========================================
+// COMUNIDAD - CREAR PUBLICACIÓN RÁPIDA
+// ==========================================
+function agregarNuevaPublicacion() {
+  const tituloInput = document.getElementById('post-titulo');
+  const contenidoInput = document.getElementById('post-contenido');
+
+  const titulo = tituloInput ? tituloInput.value.trim() : '';
+  const contenido = contenidoInput ? contenidoInput.value.trim() : '';
+
+  if (!titulo || !contenido) {
+    alert('Por favor completa el título y el contenido.');
+    return;
+  }
+
+  const feed = document.getElementById('comunidad-feed');
+  if (!feed) return;
+
+  const nuevoPost = document.createElement('article');
+  nuevoPost.className = 'post-card';
+  nuevoPost.style = 'border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; background: rgba(0,0,0,0.2); margin-top: 20px;';
+  
+  const idUnico = 'post-' + Date.now();
+  const fecha = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+
+  nuevoPost.innerHTML = `
+    <span class="fecha-post" style="color: #4cc9f0; font-size: 0.85rem;">${fecha}</span>
+    <h3 style="margin: 10px 0;">${titulo}</h3>
+    <p>${contenido}</p>
+    <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+    <div class="comentarios-seccion">
+      <h4 style="margin-bottom: 10px;">Comentarios</h4>
+      <div class="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="3dd99e1a-9425-487a-95a3-c79c71aebdf2"
+        data-page-id="${idUnico}"
+        data-page-url="https://casa-boxing-ko.netlify.app#${idUnico}"
+        data-page-title="${titulo}">
+      </div>
+    </div>
+  `;
+
+  feed.prepend(nuevoPost);
+  tituloInput.value = '';
+  contenidoInput.value = '';
+  
+  if (window.renderCusdis) window.renderCusdis();
+}
