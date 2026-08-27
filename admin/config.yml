@@ -6,25 +6,15 @@ media_folder: "assets/uploads" # Dónde se guardarán las fotos subidas
 public_folder: "/assets/uploads"
 
 collections:
-  - name: "productos"
-    label: "Productos de la Tienda"
-    folder: "contenido/productos"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Nombre del Producto", name: "title", widget: "string" }
-      - { label: "Precio", name: "precio", widget: "number", value_type: "float" }
-      - { label: "Categoría", name: "categoria", widget: "select", options: ["Guantes", "Vendas", "Equipamiento"] }
-      - { label: "Imagen", name: "image", widget: "image" }
-      - { label: "Descripción", name: "body", widget: "markdown" }
-collections:
   - name: "comunidad"
-    label: "Comunidad / Noticias"
+    label: "Comunidad / Blog"
     folder: "contenido/comunidad"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Título de la publicación", name: "title", widget: "string", default: "Resumen de entrenamientos semanales" }
       - { label: "Fecha", name: "date", widget: "datetime" }
-      - { label: "Imagen de la publicación", name: "image", widget: "image" }
-      - { label: "Contenido / Resumen", name: "body", widget: "markdown" }
+      - { label: "Imagen destacada", name: "image", widget: "image", required: false }
+      - { label: "Archivo de Video (Local)", name: "video_file", widget: "file", required: false }
+      - { label: "Enlace de YouTube (URL)", name: "youtube_url", widget: "string", required: false, hint: "Ejemplo: https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
+      - { label: "Texto de la publicación", name: "body", widget: "markdown" }
