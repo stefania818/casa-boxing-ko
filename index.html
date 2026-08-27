@@ -10,16 +10,10 @@
 
 <body>
 
-  <!-- =========================
-       ENCABEZADO / HEADER
-  ========================== -->
+  <!-- ENCABEZADO / HEADER -->
   <header class="header">
     <div class="marca">
-      <img
-        class="logo"
-        src="https://i.ibb.co/5hjFsYWg/image.png"
-        alt="Logo Casa Boxing KO"
-      >
+      <img id="logo-principal" class="logo" alt="Logo Casa Boxing KO">
       <div class="marca-texto">
         <h1>CASA BOXING KO</h1>
         <p>
@@ -39,18 +33,12 @@
       <a href="#redes">Redes</a>
     </nav>
 
-    <a href="#tienda" class="boton-carrito" aria-label="Ver Tienda">
-      🛒
-    </a>
-    <!-- SCRIPT DE NETLIFY IDENTITY PARA EL ADMIN -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <a href="#tienda" class="boton-carrito" aria-label="Ver Tienda">🛒</a>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </header>
 
   <main>
-
-    <!-- =========================
-         HERO / PORTADA
-    ========================== -->
+    <!-- HERO / PORTADA -->
     <section id="inicio" class="hero">
       <div class="hero-contenido">
         <span class="hero-etiqueta">ESCUELA DE BOXEO</span>
@@ -63,9 +51,7 @@
           En <strong>Casa Boxing KO</strong> formamos atletas con disciplina, carácter y pasión.
           Más que un gimnasio de boxeo, somos una escuela comprometida con el desarrollo deportivo y personal de nuestros pugilistas.
         </p>
-        <a href="#planes" class="boton-principal">
-          🥊 ÚNETE A LA FAMILIA KO
-        </a>
+        <a href="#planes" class="boton-principal">🥊 ÚNETE A LA FAMILIA KO</a>
       </div>
 
       <div class="hero-imagen">
@@ -73,25 +59,17 @@
       </div>
     </section>
 
-    <!-- =========================
-         HISTORIA
-    ========================== -->
+    <!-- HISTORIA Y GALERÍA -->
     <section id="historia" class="seccion historia">
       <div class="historia-texto">
         <div class="titulo-seccion">
-          <!-- CORREGIDO: Se cerró correctamente la etiqueta h2 -->
           <h2>Nuestra Historia</h2>
           <span></span>
         </div>
 
-        <p>
-          En <strong>Casa Boxing KO</strong> nos dedicamos a formar atletas con disciplina, carácter y pasión.
-        </p>
-        <p>
-          Más que un gimnasio de boxeo, somos una escuela comprometida con el desarrollo deportivo y personal de nuestros pugilistas.
-        </p>
+        <p>En <strong>Casa Boxing KO</strong> nos dedicamos a formar atletas con disciplina, carácter y pasión.</p>
+        <p>Más que un gimnasio de boxeo, somos una escuela comprometida con el desarrollo deportivo y personal de nuestros pugilistas.</p>
 
-        <!-- MISIÓN -->
         <div class="info-item">
           <div class="icono">🎯</div>
           <div>
@@ -100,7 +78,6 @@
           </div>
         </div>
 
-        <!-- VISIÓN -->
         <div class="info-item">
           <div class="icono">👁</div>
           <div>
@@ -109,7 +86,6 @@
           </div>
         </div>
 
-        <!-- VALORES -->
         <div class="info-item">
           <div class="icono">🛡</div>
           <div>
@@ -119,76 +95,61 @@
         </div>
       </div>
 
-      <!-- =========================
-           GALERÍA / CARRUSEL
-      ========================== -->
+      <!-- GALERÍA / CARRUSEL (Inyectado dinámicamente) -->
       <div id="galeria" class="galeria">
-        <!-- CORREGIDO: Cierre correcto de etiquetas h2 y em -->
         <h2><em>Galería de Campeones</em></h2>
 
         <div class="carrusel">
           <button class="flecha izquierda" onclick="moverCarrusel(-1)" aria-label="Anterior">&#10094;</button>
-
-          <div class="fotos">
-            <img class="foto-carrusel activa" src="https://i.ibb.co/JWf5kcC6/IMG-7789.jpg" alt="Casa Boxing KO">
-            <img class="foto-carrusel" src="https://i.ibb.co/pv2y0dpG/IMG-7790.jpg" alt="Entrenamiento Casa Boxing KO">
-            <img class="foto-carrusel" src="https://i.ibb.co/TMPyKwGJ/IMG-7786.jpg" alt="Campeones Casa Boxing KO">
-            <img class="foto-carrusel" src="https://i.ibb.co/kVz42tB5/IMG-7791.jpg" alt="Casa Boxing KO">
+          
+          <div id="contenedor-carrusel-fotos" class="fotos">
+            <!-- Las imágenes se cargan desde galeria-datos.js -->
           </div>
 
           <button class="flecha derecha" onclick="moverCarrusel(1)" aria-label="Siguiente">&#10095;</button>
         </div>
 
-        <!-- CORREGIDO: Agregado el 4to indicador correspondiente a las 4 fotos -->
-        <div class="indicadores">
-          <span class="indicador activo" onclick="mostrarFoto(0)"></span>
-          <span class="indicador" onclick="mostrarFoto(1)"></span>
-          <span class="indicador" onclick="mostrarFoto(2)"></span>
-          <span class="indicador" onclick="mostrarFoto(3)"></span>
+        <div id="contenedor-indicadores" class="indicadores">
+          <!-- Los indicadores se generan automáticamente -->
         </div>
       </div>
     </section>
 
-<!-- =========================
-     COMUNIDAD CBK (BLOG)
-========================== -->
-<section id="comunidad" class="comunidad" style="padding: 20px;">
-  <h2>Nuestra Comunidad</h2>
-  <p>Espacio exclusivo de noticias y novedades.</p>
+    <!-- COMUNIDAD CBK -->
+    <section id="comunidad" class="comunidad" style="padding: 20px;">
+      <h2>Nuestra Comunidad</h2>
+      <p>Espacio exclusivo de noticias y novedades.</p>
 
-  <div id="comunidad-feed" class="comunidad-grid-compacta">
-    <article class="post-card" style="border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; background: rgba(0,0,0,0.3); margin-bottom: 25px;">
-      <span class="fecha-post" style="color: #4cc9f0; font-size: 0.85rem;">Viernes, 21 de Agosto</span>
-      <h3 style="margin: 10px 0; font-size: 1.4rem;">Resumen de entrenamientos semanales</h3>
-      
-      <div class="post-media" style="text-align: center; margin: 15px 0;">
-        <img src="https://i.ibb.co/pv2y0dpG/IMG-7790.jpg" alt="Entrenamiento Sparring CBK" class="post-img" style="max-width: 100%; height: auto; border-radius: 6px;">
+      <div id="comunidad-feed" class="comunidad-grid-compacta">
+        <article class="post-card" style="border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; background: rgba(0,0,0,0.3); margin-bottom: 25px;">
+          <span class="fecha-post" style="color: #4cc9f0; font-size: 0.85rem;">Viernes, 21 de Agosto</span>
+          <h3 style="margin: 10px 0; font-size: 1.4rem;">Resumen de entrenamientos semanales</h3>
+          
+          <div class="post-media" style="text-align: center; margin: 15px 0;">
+            <img id="img-post-comunidad" alt="Entrenamiento Sparring CBK" class="post-img" style="max-width: 100%; height: auto; border-radius: 6px;">
+          </div>
+
+          <p style="line-height: 1.6; margin-bottom: 20px;">Resumen del entrenamiento semanal de nuestros atletas.</p>
+
+          <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+
+          <div class="comentarios-seccion">
+            <h4 style="margin-bottom: 15px; color: #fff;">Comentarios de la comunidad</h4>
+            <div id="cusdis_thread"
+              data-host="https://cusdis.com"
+              data-app-id="3dd99e1a-9425-487a-95a3-c79c71aebdf2"
+              data-page-id="resumen-semanal-cbk-1"
+              data-page-url="https://casa-boxing-ko.netlify.app/#comunidad"
+              data-page-title="Resumen de entrenamientos semanales">
+            </div>
+          </div>
+        </article>
       </div>
+    </section>
 
-      <p style="line-height: 1.6; margin-bottom: 20px;">Resumen del entrenamiento semanal de nuestros atletas.</p>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 
-      <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
-
-      <!-- CAJA DE COMENTARIOS PÚBLICA -->
-      <div class="comentarios-seccion">
-        <h4 style="margin-bottom: 15px; color: #fff;">Comentarios de la comunidad</h4>
-        <div id="cusdis_thread"
-          data-host="https://cusdis.com"
-          data-app-id="3dd99e1a-9425-487a-95a3-c79c71aebdf2"
-          data-page-id="resumen-semanal-cbk-1"
-          data-page-url="https://casa-boxing-ko.netlify.app/#comunidad"
-          data-page-title="Resumen de entrenamientos semanales">
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- SCRIPT DE CUSDIS CON RECARGA AUTOMÁTICA DE COMENTARIOS -->
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-    <!-- =========================
-         PLANES
-    ========================== -->
+    <!-- PLANES -->
     <section id="planes" class="seccion planes">
       <div class="titulo-centro">
         <span>ENTRENA CON NOSOTROS</span>
@@ -197,7 +158,6 @@
       </div>
 
       <div class="contenedor-planes">
-        <!-- PLAN REGULAR -->
         <div class="plan-card destacado">
           <div class="plan-etiqueta">MÁS ELEGIDO</div>
           <h3>Pase Mensual Regular</h3>
@@ -212,7 +172,6 @@
           <a href="#" class="boton-plan">Inscribirme Ahora</a>
         </div>
 
-        <!-- PLAN PERSONALIZADO -->
         <div class="plan-card">
           <h3>Clases Personalizadas</h3>
           <div class="plan-precio">$60 <span>/ mes</span></div>
@@ -228,36 +187,34 @@
       </div>
     </section>
 
-    <!-- =========================
-         TIENDA OFICIAL
-    ========================== -->
+    <!-- TIENDA OFICIAL -->
     <section id="tienda" class="tienda">
       <h2>Tienda Oficial CBK</h2>
 
       <div class="categoria-card" onclick="abrirModal('guantes')">
         <h3>Guantes</h3>
-        <img src="https://i.ibb.co/51ad7800-965f-4503-bb4c-329dc83d91d9.jpg" alt="Guantes de Boxeo" class="categoria-img">
+        <img id="img-tienda-guantes" alt="Guantes de Boxeo" class="categoria-img">
         <button class="btn-comprar">Ver Modelos</button>
       </div>
 
       <div class="categoria-card" onclick="abrirModal('vendas')">
         <h3>Vendas</h3>
-        <img src="https://i.ibb.co/75861512-1a09-45a2-bc52-b07b789c4c07.jpg" alt="Vendas" class="categoria-img">
+        <img id="img-tienda-vendas" alt="Vendas" class="categoria-img">
         <button class="btn-comprar">Ver Modelos</button>
       </div>
 
       <div class="categoria-card" onclick="abrirModal('bucales')">
         <h3>Bucales</h3>
-        <img src="https://i.ibb.co/fb5f4b4d-af8e-4027-b6af-96cbe2589185.jpg" alt="Protectores Bucales" class="categoria-img">
+        <img id="img-tienda-bucales" alt="Protectores Bucales" class="categoria-img">
         <button class="btn-comprar">Ver Opciones</button>
       </div>
 
-      <!-- Ventana Modal de Producto (Navegable en 3 niveles) -->
+      <!-- Ventana Modal de Producto -->
       <div id="modalTienda" class="modal-tienda" style="display: none;">
         <div class="contenido-modal-temu">
           <button class="boton-cerrar-temu" onclick="cerrarTienda()">&#10005;</button>
 
-          <!-- Nivel 1: Categorías -->
+          <!-- Nivel 1 -->
           <div id="vistaNivel1">
             <h2 style="font-size: 18px; color: #38bdf8; margin-top: 0; margin-bottom: 5px;">Inventario de Boxeo</h2>
             <p style="font-size: 12px; color: #cbd5e1; margin-bottom: 15px;">Selecciona la categoría que deseas explorar:</p>
@@ -292,14 +249,14 @@
             </div>
           </div>
 
-          <!-- Nivel 2: Catálogo de Modelos -->
+          <!-- Nivel 2 -->
           <div id="vistaNivel2" style="display: none;">
             <button class="boton-volver" onclick="irANivel1()">⬅ Categorías</button>
             <h2 id="tituloCategoriaNivel2" style="font-size: 18px; color: #38bdf8; margin-top: 10px; margin-bottom: 12px;"></h2>
             <div id="grillaModelosNivel2" class="grilla-modelos"></div>
           </div>
 
-          <!-- Nivel 3: Detalle y Compras -->
+          <!-- Nivel 3 -->
           <div id="vistaNivel3" style="display: none;">
             <button class="boton-volver" onclick="irANivel2()">⬅ Volver a Modelos</button>
 
@@ -341,9 +298,7 @@
       </div>
     </section>
 
-    <!-- =========================
-         REDES SOCIALES
-    ========================== -->
+    <!-- REDES SOCIALES -->
     <section id="redes" class="seccion redes">
       <div class="titulo-centro">
         <h2>Síguenos en Redes</h2>
@@ -375,12 +330,8 @@
         </a>
       </div>
     </section>
-
   </main>
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
   <footer class="footer">
     <div class="footer-marca">
       <div class="footer-icono">🥊</div>
@@ -392,11 +343,9 @@
     <p>© 2026 Casa Boxing KO. Todos los derechos reservados.</p>
   </footer>
 
-
-
-  
+  <!-- Carga del archivo de datos y luego del JS principal -->
+  <script src="galeria-datos.js"></script>
   <script src="script.js"></script>
-
 </body>
 
 </html>
