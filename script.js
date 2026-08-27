@@ -1,34 +1,26 @@
 // ==========================================
-// 1. INVENTARIO DE PRODUCTOS
+// 1. INVENTARIO DE PRODUCTOS (Usa GALERIA_IMAGENES)
 // ==========================================
 const inventario = {
   guantes: [
     {
       nombre: "Everlast",
       precio: "$45.00",
-      fotos: [
-        "https://i.ibb.co/nM0Mb7K9/51ad7800-965f-4503-bb4c-329dc83d91d9.jpg",
-        "https://i.ibb.co/mVyhbth8/75861512-1a09-45a2-bc52-b07b789c4c07.jpg"
-      ],
+      fotos: GALERIA_IMAGENES?.inventarioFotos?.everlast || [],
       colores: ["Negro", "Rojo", "Azul"],
       medidas: ["12 oz", "14 oz", "16 oz"]
     },
     {
       nombre: "Venum",
       precio: "$50.00",
-      fotos: [
-        "https://i.ibb.co/zDXs9yF/fb5f4b4d-af8e-4027-b6af-96cbe2589185.jpg"
-      ],
+      fotos: GALERIA_IMAGENES?.inventarioFotos?.venum || [],
       colores: ["Negro", "Rojo", "Azul"],
       medidas: ["12 oz", "14 oz", "16 oz"]
     },
     {
       nombre: "Venum Prime",
       precio: "$55.00",
-      fotos: [
-        "https://i.ibb.co/vx1Mt7SY/d6f4ce44-ed11-4e8b-a7a5-c1ae39f4b509.jpg",
-        "https://i.ibb.co/LXm9xSLZ/f747595e-1db2-4477-83ff-103fed8ed8ed.jpg"
-      ],
+      fotos: GALERIA_IMAGENES?.inventarioFotos?.venumPrime || [],
       colores: ["Negro", "Rojo", "Azul"],
       medidas: ["12 oz", "14 oz", "16 oz"]
     }
@@ -37,9 +29,7 @@ const inventario = {
     {
       nombre: "Protectores Bucales",
       precio: "$12.00",
-      fotos: [
-        "https://i.ibb.co/nM0Mb7K9/51ad7800-965f-4503-bb4c-329dc83d91d9.jpg"
-      ],
+      fotos: GALERIA_IMAGENES?.inventarioFotos?.bucales || [],
       colores: ["Negro", "Rojo", "Transparente"],
       medidas: ["Estándar"]
     }
@@ -48,9 +38,7 @@ const inventario = {
     {
       nombre: "Vendas Semielásticas",
       precio: "$10.00",
-      fotos: [
-        "https://i.ibb.co/mVyhbth8/75861512-1a09-45a2-bc52-b07b789c4c07.jpg"
-      ],
+      fotos: GALERIA_IMAGENES?.inventarioFotos?.vendas || [],
       colores: ["Negro", "Rojo", "Azul"],
       medidas: ["3m", "5m"]
     }
@@ -89,7 +77,6 @@ function cerrarTienda() {
   if (modal) modal.style.display = "none";
 }
 
-// Cerrar modal al hacer clic fuera del contenido
 window.addEventListener("click", function (e) {
   const modal = document.getElementById("modalTienda");
   if (e.target === modal) {
@@ -100,15 +87,12 @@ window.addEventListener("click", function (e) {
 // ==========================================
 // 4. NAVEGACIÓN Y RENDERIZADO DE NIVELES
 // ==========================================
-
-// NIVEL 1: Categorías principales
 function irANivel1() {
   document.getElementById("vistaNivel1").style.display = "block";
   document.getElementById("vistaNivel2").style.display = "none";
   document.getElementById("vistaNivel3").style.display = "none";
 }
 
-// NIVEL 2: Catálogo de modelos
 function abrirNivel2(cat) {
   categoriaSeleccionada = cat;
   modelosCategoriaActual = inventario[cat] || [];
@@ -128,9 +112,10 @@ function abrirNivel2(cat) {
   grilla.innerHTML = "";
 
   modelosCategoriaActual.forEach((item, index) => {
+    const fotoPortada = item.fotos.length > 0 ? item.fotos[0] : "";
     grilla.innerHTML += `
       <div class="card-modelo" onclick="abrirNivel3(${index})">
-        <img src="${item.fotos[0]}" alt="${item.nombre}" class="img-modelo">
+        <img src="${fotoPortada}" alt="${item.nombre}" class="img-modelo">
         <span style="display:block; margin-top:5px; font-weight:bold; color:#fff; font-size:12px;">${item.nombre}</span>
         <small style="color:#38bdf8;">${item.precio}</small>
       </div>
@@ -143,7 +128,6 @@ function irANivel2() {
   document.getElementById("vistaNivel2").style.display = "block";
 }
 
-// NIVEL 3: Detalle del producto
 function abrirNivel3(indexModelo) {
   modeloSeleccionado = modelosCategoriaActual[indexModelo];
   if (!modeloSeleccionado) return;
@@ -162,7 +146,6 @@ function abrirNivel3(indexModelo) {
   
   actualizarFotoPrincipal();
 
-  // Renderizar Colores con selección activa
   const contColores = document.getElementById("contenedorColores");
   contColores.innerHTML = "";
   modeloSeleccionado.colores.forEach((c, i) => {
@@ -170,7 +153,6 @@ function abrirNivel3(indexModelo) {
     contColores.innerHTML += `<button class="btn-opcion ${activeClass}" onclick="seleccionarColor(this, '${c}')">${c}</button>`;
   });
 
-  // Renderizar Medidas con selección activa
   const contTallas = document.getElementById("contenedorTallas");
   contTallas.innerHTML = "";
   modeloSeleccionado.medidas.forEach((m, i) => {
@@ -223,41 +205,40 @@ function cambiarCantidad(delta) {
 }
 
 // ==========================================
-//  JAVASCRIPT DEL CARRUSEL
+// 6. JAVASCRIPT DEL CARRUSEL
 // ==========================================
-  <script>
-    let indiceFoto = 0;
+let indiceFoto = 0;
 
-    function mostrarFoto(indice) {
-      const fotos = document.querySelectorAll(".foto-carrusel");
-      const indicadores = document.querySelectorAll(".indicador");
+function mostrarFoto(indice) {
+  const fotos = document.querySelectorAll(".foto-carrusel");
+  const indicadores = document.querySelectorAll(".indicador");
 
-      if (!fotos.length) return;
+  if (!fotos.length) return;
 
-      fotos.forEach((foto) => foto.classList.remove("activa"));
-      indicadores.forEach((indicador) => indicador.classList.remove("activo"));
+  fotos.forEach((foto) => foto.classList.remove("activa"));
+  indicadores.forEach((indicador) => indicador.classList.remove("activo"));
 
-      indiceFoto = indice;
-      fotos[indiceFoto].classList.add("activa");
-      if (indicadores[indiceFoto]) {
-        indicadores[indiceFoto].classList.add("activo");
-      }
-    }
+  indiceFoto = indice;
+  fotos[indiceFoto].classList.add("activa");
+  if (indicadores[indiceFoto]) {
+    indicadores[indiceFoto].classList.add("activo");
+  }
+}
 
-    function moverCarrusel(direccion) {
-      const fotos = document.querySelectorAll(".foto-carrusel");
-      if (!fotos.length) return;
+function moverCarrusel(direccion) {
+  const fotos = document.querySelectorAll(".foto-carrusel");
+  if (!fotos.length) return;
 
-      indiceFoto += direccion;
+  indiceFoto += direccion;
 
-      if (indiceFoto >= fotos.length) indiceFoto = 0;
-      if (indiceFoto < 0) indiceFoto = fotos.length - 1;
+  if (indiceFoto >= fotos.length) indiceFoto = 0;
+  if (indiceFoto < 0) indiceFoto = fotos.length - 1;
 
-      mostrarFoto(indiceFoto);
-
+  mostrarFoto(indiceFoto);
+}
 
 // ==========================================
-// 6. PROCESO DE COMPRA AUTOMATIZADO
+// 7. PROCESO DE COMPRA AUTOMATIZADO
 // ==========================================
 async function procesarPago() {
   if (!modeloSeleccionado) {
@@ -265,7 +246,8 @@ async function procesarPago() {
     return;
   }
 
-  // 1. Recopilar datos del cliente (puedes tomar estos datos desde un modal/formulario)
+  const precioNumerico = parseFloat(modeloSeleccionado.precio.replace(/[^0-9.-]+/g, ""));
+
   const datosCliente = {
     nombre: document.getElementById("clienteNombre")?.value || "Cliente",
     email: document.getElementById("clienteEmail")?.value || "cliente@email.com",
@@ -273,20 +255,18 @@ async function procesarPago() {
     direccion: document.getElementById("clienteDireccion")?.value || "Retiro en local"
   };
 
-  // 2. Estructurar la orden
   const orden = {
     producto: modeloSeleccionado.nombre,
     precio: modeloSeleccionado.precio,
     color: colorSeleccionado,
     medida: medidaSeleccionada,
     cantidad: cantidadSeleccionada,
-    total: modeloSeleccionado.precio * cantidadSeleccionada,
+    total: `$${(precioNumerico * cantidadSeleccionada).toFixed(2)}`,
     cliente: datosCliente,
     fecha: new Date().toISOString()
   };
 
   try {
-    // 3. Enviar orden a tu servidor o webhook de automatización (Zapier / Make / Netlify Functions)
     const respuesta = await fetch("https://tu-servidor-o-webhook.com/api/pedidos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -295,7 +275,6 @@ async function procesarPago() {
 
     if (respuesta.ok) {
       alert("¡Pedido registrado exitosamente! Te hemos enviado un correo con la confirmación.");
-      // Redirigir a página de agradecimiento
       window.location.href = "/gracias.html";
     } else {
       throw new Error("Error al procesar el pedido.");
@@ -305,8 +284,9 @@ async function procesarPago() {
     alert("Hubo un problema al procesar tu compra. Por favor intenta nuevamente.");
   }
 }
+
 // ==========================================
-// COMUNIDAD - CREAR PUBLICACIÓN RÁPIDA
+// 8. COMUNIDAD - CREAR PUBLICACIÓN RÁPIDA
 // ==========================================
 function agregarNuevaPublicacion() {
   const tituloInput = document.getElementById('post-titulo');
@@ -353,7 +333,8 @@ function agregarNuevaPublicacion() {
   
   if (window.renderCusdis) window.renderCusdis();
 }
-// Redirección de Netlify Identity tras inicio de sesión
+
+// Netlify Identity
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on("init", user => {
     if (!user) {
@@ -364,16 +345,19 @@ if (window.netlifyIdentity) {
   });
 }
 
-//GALERIA_IMAGENES//
-      
+// ==========================================
+// 9. CARGA DINÁMICA DE IMÁGENES AL CARGAR EL DOM
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Cargar Logo
+  if (typeof GALERIA_IMAGENES === "undefined") return;
+
+  // Logo
   const elLogo = document.getElementById("logo-principal");
   if (elLogo && GALERIA_IMAGENES.logo) {
     elLogo.src = GALERIA_IMAGENES.logo;
   }
 
-  // 2. Cargar Carrusel de fotos e Indicadores
+  // Carrusel
   const contenedorCarrusel = document.getElementById("contenedor-carrusel-fotos");
   const contenedorIndicadores = document.getElementById("contenedor-indicadores");
 
@@ -382,14 +366,12 @@ document.addEventListener("DOMContentLoaded", () => {
     contenedorIndicadores.innerHTML = "";
 
     GALERIA_IMAGENES.carrusel.forEach((foto, i) => {
-      // Crear imagen del carrusel
       const img = document.createElement("img");
       img.className = `foto-carrusel ${foto.activa ? "activa" : ""}`;
       img.src = foto.src;
       img.alt = foto.alt;
       contenedorCarrusel.appendChild(img);
 
-      // Crear indicador
       const ind = document.createElement("span");
       ind.className = `indicador ${foto.activa ? "activo" : ""}`;
       ind.setAttribute("onclick", `mostrarFoto(${i})`);
@@ -397,18 +379,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Cargar Imagen de Comunidad
+  // Comunidad
   const imgComunidad = document.getElementById("img-post-comunidad");
-  if (imgComunidad && GALERIA_IMAGENES.comunidad.length > 0) {
+  if (imgComunidad && GALERIA_IMAGENES.comunidad?.length > 0) {
     imgComunidad.src = GALERIA_IMAGENES.comunidad[0].src;
   }
 
-  // 4. Cargar Imágenes de la Tienda
+  // Tarjetas Categoria Tienda
   const imgGuantes = document.getElementById("img-tienda-guantes");
   const imgVendas = document.getElementById("img-tienda-vendas");
   const imgBucales = document.getElementById("img-tienda-bucales");
 
-  if (imgGuantes) imgGuantes.src = GALERIA_IMAGENES.tienda.guantes;
-  if (imgVendas) imgVendas.src = GALERIA_IMAGENES.tienda.vendas;
-  if (imgBucales) imgBucales.src = GALERIA_IMAGENES.tienda.bucales;
+  if (imgGuantes && GALERIA_IMAGENES.tienda?.guantes) imgGuantes.src = GALERIA_IMAGENES.tienda.guantes;
+  if (imgVendas && GALERIA_IMAGENES.tienda?.vendas) imgVendas.src = GALERIA_IMAGENES.tienda.vendas;
+  if (imgBucales && GALERIA_IMAGENES.tienda?.bucales) imgBucales.src = GALERIA_IMAGENES.tienda.bucales;
 });
