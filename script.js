@@ -1,164 +1,83 @@
-// ==========================================
-// 1. INVENTARIO BASE (Lee de GALERIA_IMAGENES)
-// ==========================================
+// =========================================
+// DATOS DE EJEMPLO DE LA TIENDA (INVENTARIO)
+// =========================================
 const inventario = {
   guantes: [
     {
-      nombre: "Everlast",
-      precio: "$45.00",
-      fotos: (typeof GALERIA_IMAGENES !== 'undefined' && GALERIA_IMAGENES.inventarioFotos?.everlast) ? GALERIA_IMAGENES.inventarioFotos.everlast : [],
+      nombre: "Guantes Everlast Pro",
+      precio: "$35.00",
+      fotos: ["https://via.placeholder.com/200/111c2e/ffffff?text=Guantes+Everlast"],
       colores: ["Negro", "Rojo", "Azul"],
-      medidas: ["12 oz", "14 oz", "16 oz"]
+      tallas: ["12 oz", "14 oz", "16 oz"]
     },
     {
-      nombre: "Venum",
-      precio: "$55.00",
-      fotos: (typeof GALERIA_IMAGENES !== 'undefined' && GALERIA_IMAGENES.inventarioFotos?.venum) ? GALERIA_IMAGENES.inventarioFotos.venum : [],
-      colores: ["Blanco/Oro", "Negro/Rojo"],
-      medidas: ["12 oz", "14 oz"]
-    },
-    {
-      nombre: "Venum Prime",
-      precio: "$65.00",
-      fotos: (typeof GALERIA_IMAGENES !== 'undefined' && GALERIA_IMAGENES.inventarioFotos?.venumPrime) ? GALERIA_IMAGENES.inventarioFotos.venumPrime : [],
-      colores: ["Negro Mate", "Gris"],
-      medidas: ["14 oz", "16 oz"]
-    }
-  ],
-  bucales: [
-    {
-      nombre: "Protector Bucal Pro",
-      precio: "$12.00",
-      fotos: (typeof GALERIA_IMAGENES !== 'undefined' && GALERIA_IMAGENES.inventarioFotos?.bucales) ? GALERIA_IMAGENES.inventarioFotos.bucales : [],
-      colores: ["Transparente", "Negro", "Rojo"],
-      medidas: ["Estándar Adulto"]
+      nombre: "Guantes Venum Challenger",
+      precio: "$45.00",
+      fotos: ["https://via.placeholder.com/200/111c2e/ffffff?text=Guantes+Venum"],
+      colores: ["Negro/Blanco", "Oro/Negro"],
+      tallas: ["12 oz", "14 oz"]
     }
   ],
   vendas: [
     {
-      nombre: "Vendas Semielásticas",
-      precio: "$10.00",
-      fotos: (typeof GALERIA_IMAGENES !== 'undefined' && GALERIA_IMAGENES.inventarioFotos?.vendas) ? GALERIA_IMAGENES.inventarioFotos.vendas : [],
-      colores: ["Negro", "Rojo", "Azul"],
-      medidas: ["3 Metros", "5 Metros"]
+      nombre: "Vendas Semi-Elásticas 4.5m",
+      precio: "$8.00",
+      fotos: ["https://via.placeholder.com/200/111c2e/ffffff?text=Vendas+4.5m"],
+      colores: ["Rojo", "Negro", "Azul", "Amarillo"],
+      tallas: ["4.5 Metros"]
+    }
+  ],
+  bucales: [
+    {
+      nombre: "Protector Bucal Gel Max",
+      precio: "$12.00",
+      fotos: ["https://via.placeholder.com/200/111c2e/ffffff?text=Bucal+Gel"],
+      colores: ["Transparente", "Negro"],
+      tallas: ["Adulto", "Juvenil"]
     }
   ]
 };
 
-// Variables de estado global
-let indiceCarrusel = 0;
-let productoSeleccionado = null;
+// Variables de estado del modal
 let categoriaActual = '';
-let fotoMiniIndice = 0;
-let cantidadProducto = 1;
+let productoSeleccionado = null;
+let fotoIndiceActual = 0;
+let cantidadSeleccionada = 1;
 
-// ==========================================
-// 2. INICIALIZACIÓN
-// ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-  if (typeof GALERIA_IMAGENES !== 'undefined') {
-    // Cargar Logo
-    const logoImg = document.getElementById("logo-principal");
-    if (logoImg && GALERIA_IMAGENES.logo) logoImg.src = GALERIA_IMAGENES.logo;
+// =========================================
+// FUNCIONES DE CONTROL DEL MODAL DE TIENDA
+// =========================================
 
-    // Cargar Imágenes Portada de Tienda
-    const imgGuantes = document.getElementById("img-tienda-guantes");
-    const imgVendas = document.getElementById("img-tienda-vendas");
-    const imgBucales = document.getElementById("img-tienda-bucales");
-
-    if (imgGuantes && GALERIA_IMAGENES.tienda?.guantes) imgGuantes.src = GALERIA_IMAGENES.tienda.guantes;
-    if (imgVendas && GALERIA_IMAGENES.tienda?.vendas) imgVendas.src = GALERIA_IMAGENES.tienda.vendas;
-    if (imgBucales && GALERIA_IMAGENES.tienda?.bucales) imgBucales.src = GALERIA_IMAGENES.tienda.bucales;
-
-    // Cargar Post Comunidad
-    const imgPost = document.getElementById("img-post-comunidad");
-    if (imgPost && GALERIA_IMAGENES.comunidad?.[0]) imgPost.src = GALERIA_IMAGENES.comunidad[0];
-
-    // Inicializar Carrusel Principal
-    renderizarCarrusel();
-  }
-});
-
-// ==========================================
-// 3. LÓGICA DEL CARRUSEL DE FOTOS
-// ==========================================
-function renderizarCarrusel() {
-  const contenedorFotos = document.getElementById("contenedor-carrusel-fotos");
-  const contenedorIndicadores = document.getElementById("contenedor-indicadores");
-  if (!contenedorFotos || !GALERIA_IMAGENES.carrusel) return;
-
-  contenedorFotos.innerHTML = "";
-  contenedorIndicadores.innerHTML = "";
-
-  GALERIA_IMAGENES.carrusel.forEach((src, idx) => {
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = `Campeón ${idx + 1}`;
-    if (idx === 0) img.classList.add("activa");
-    contenedorFotos.appendChild(img);
-
-    const punto = document.createElement("span");
-    if (idx === 0) punto.classList.add("activo");
-    punto.onclick = () => irAFotoCarrusel(idx);
-    contenedorIndicadores.appendChild(punto);
-  });
-}
-
-function moverCarrusel(direccion) {
-  const fotos = document.querySelectorAll("#contenedor-carrusel-fotos img");
-  const puntos = document.querySelectorAll("#contenedor-indicadores span");
-  if (!fotos.length) return;
-
-  fotos[indiceCarrusel].classList.remove("activa");
-  puntos[indiceCarrusel].classList.remove("activo");
-
-  indiceCarrusel = (indiceCarrusel + direccion + fotos.length) % fotos.length;
-
-  fotos[indiceCarrusel].classList.add("activa");
-  puntos[indiceCarrusel].classList.add("activo");
-}
-
-function irAFotoCarrusel(index) {
-  const fotos = document.querySelectorAll("#contenedor-carrusel-fotos img");
-  const puntos = document.querySelectorAll("#contenedor-indicadores span");
-  if (!fotos.length) return;
-
-  fotos[indiceCarrusel].classList.remove("activa");
-  puntos[indiceCarrusel].classList.remove("activo");
-
-  indiceCarrusel = index;
-
-  fotos[indiceCarrusel].classList.add("activa");
-  puntos[indiceCarrusel].classList.add("activo");
-}
-
-// ==========================================
-// 4. LÓGICA DE TIENDA Y MODAL
-// ==========================================
 function abrirModal(categoria) {
   const modal = document.getElementById('modalTienda');
   if (modal) {
     modal.style.display = 'flex';
-    abrirNivel2(categoria);
+    if (categoria) {
+      abrirNivel2(categoria);
+    } else {
+      irANivel1();
+    }
   }
 }
 
 function cerrarTienda() {
   const modal = document.getElementById('modalTienda');
-  if (modal) modal.style.display = 'none';
+  if (modal) {
+    modal.style.display = 'none';
+  }
 }
 
+// Navegación Nivel 1: Lista de Categorías
 function irANivel1() {
+  document.getElementById('vistaNivel1').style.display = 'block';
   document.getElementById('vistaNivel2').style.display = 'none';
   document.getElementById('vistaNivel3').style.display = 'none';
-  document.getElementById('vistaNivel1').style.display = 'block';
 }
 
+// Navegación Nivel 2: Modelos según Categoría
 function abrirNivel2(cat) {
   categoriaActual = cat;
-  const lista = inventario[cat];
-  if (!lista) return;
-
+  
   document.getElementById('vistaNivel1').style.display = 'none';
   document.getElementById('vistaNivel3').style.display = 'none';
   document.getElementById('vistaNivel2').style.display = 'block';
@@ -169,13 +88,20 @@ function abrirNivel2(cat) {
   const grilla = document.getElementById('grillaModelosNivel2');
   if (grilla) {
     grilla.innerHTML = '';
+    const lista = inventario[cat] || [];
+
+    if (lista.length === 0) {
+      grilla.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #cbd5e1;">Próximamente más productos.</p>';
+      return;
+    }
+
     lista.forEach((prod, index) => {
-      const foto = prod.fotos[0] || '';
+      const foto = (prod.fotos && prod.fotos[0]) ? prod.fotos[0] : '';
       grilla.innerHTML += `
-        <div class="card-modelo" onclick="verDetalleProducto('${cat}', ${index})" style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; cursor: pointer; text-align: center;">
-          <img src="${foto}" alt="${prod.nombre}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 6px;">
-          <h4 style="margin: 8px 0 4px; color: #fff;">${prod.nombre}</h4>
-          <span style="color: #38bdf8; font-weight: bold;">${prod.precio}</span>
+        <div class="card-modelo" onclick="verDetalleProducto('${cat}', ${index})">
+          <img src="${foto}" alt="${prod.nombre}" class="img-modelo">
+          <h4 style="margin: 8px 0 4px; color: #fff; font-size: 13px;">${prod.nombre}</h4>
+          <span style="color: #38bdf8; font-weight: bold; font-size: 14px;">${prod.precio}</span>
         </div>
       `;
     });
@@ -183,70 +109,130 @@ function abrirNivel2(cat) {
 }
 
 function irANivel2() {
-  document.getElementById('vistaNivel3').style.display = 'none';
-  document.getElementById('vistaNivel2').style.display = 'block';
+  abrirNivel2(categoriaActual);
 }
 
+// Navegación Nivel 3: Detalle del Producto
 function verDetalleProducto(cat, index) {
   productoSeleccionado = inventario[cat][index];
-  if (!productoSeleccionado) return;
-
-  fotoMiniIndice = 0;
-  cantidadProducto = 1;
+  fotoIndiceActual = 0;
+  cantidadSeleccionada = 1;
 
   document.getElementById('vistaNivel2').style.display = 'none';
   document.getElementById('vistaNivel3').style.display = 'block';
 
+  // Cargar datos en pantalla
   document.getElementById('tituloModeloNivel3').innerText = productoSeleccionado.nombre;
   document.getElementById('precioModeloNivel3').innerText = productoSeleccionado.precio;
-  document.getElementById('numCantidad').innerText = cantidadProducto;
-
+  document.getElementById('numCantidad').innerText = cantidadSeleccionada;
   actualizarFotoMini();
 
-  // Generar Opciones de Colores
+  // Renderizar Colores
   const contColores = document.getElementById('contenedorColores');
   contColores.innerHTML = '';
-  productoSeleccionado.colores.forEach((c, i) => {
-    contColores.innerHTML += `<button class="btn-variante ${i === 0 ? 'activo' : ''}" onclick="seleccionarOpcion(this)">${c}</button>`;
+  (productoSeleccionado.colores || []).forEach((col, i) => {
+    contColores.innerHTML += `<button class="btn-opcion ${i === 0 ? 'activa' : ''}" onclick="seleccionarOpcion(this)">${col}</button>`;
   });
 
-  // Generar Opciones de Medidas
-  const contMedidas = document.getElementById('contenedorTallas');
-  contMedidas.innerHTML = '';
-  productoSeleccionado.medidas.forEach((m, i) => {
-    contMedidas.innerHTML += `<button class="btn-variante ${i === 0 ? 'activo' : ''}" onclick="seleccionarOpcion(this)">${m}</button>`;
+  // Renderizar Tallas/Medidas
+  const contTallas = document.getElementById('contenedorTallas');
+  contTallas.innerHTML = '';
+  (productoSeleccionado.tallas || []).forEach((tal, i) => {
+    contTallas.innerHTML += `<button class="btn-opcion ${i === 0 ? 'activa' : ''}" onclick="seleccionarOpcion(this)">${tal}</button>`;
   });
+
+  // Renderizar botones de cobro PayPal
+  renderizarBotonesPayPal();
 }
 
-function cambiarFotoMini(dir) {
-  if (!productoSeleccionado || !productoSeleccionado.fotos.length) return;
-  const total = productoSeleccionado.fotos.length;
-  fotoMiniIndice = (fotoMiniIndice + dir + total) % total;
-  actualizarFotoMini();
+function seleccionarOpcion(elemento) {
+  const hermanos = elemento.parentElement.children;
+  for (let btn of hermanos) {
+    btn.classList.remove('activa');
+  }
+  elemento.classList.add('activa');
+}
+
+function cambiarCantidad(delta) {
+  cantidadSeleccionada += delta;
+  if (cantidadSeleccionada < 1) cantidadSeleccionada = 1;
+  document.getElementById('numCantidad').innerText = cantidadSeleccionada;
+  renderizarBotonesPayPal();
 }
 
 function actualizarFotoMini() {
   const img = document.getElementById('imgPrincipal');
-  if (img && productoSeleccionado && productoSeleccionado.fotos.length) {
-    img.src = productoSeleccionado.fotos[fotoMiniIndice];
+  if (img && productoSeleccionado && productoSeleccionado.fotos) {
+    img.src = productoSeleccionado.fotos[fotoIndiceActual];
   }
 }
 
-function seleccionarOpcion(btn) {
-  const hermanos = btn.parentElement.querySelectorAll('.btn-variante');
-  hermanos.forEach(b => b.classList.remove('activo'));
-  btn.classList.add('activo');
+function cambiarFotoMini(delta) {
+  if (!productoSeleccionado || !productoSeleccionado.fotos) return;
+  fotoIndiceActual += delta;
+  if (fotoIndiceActual < 0) fotoIndiceActual = productoSeleccionado.fotos.length - 1;
+  if (fotoIndiceActual >= productoSeleccionado.fotos.length) fotoIndiceActual = 0;
+  actualizarFotoMini();
 }
 
-function cambiarCantidad(val) {
-  cantidadProducto = Math.max(1, cantidadProducto + val);
-  const numCant = document.getElementById('numCantidad');
-  if (numCant) numCant.innerText = cantidadProducto;
+// =========================================
+// INTEGRACIÓN CON PAYPAL (PAGO AUTOMÁTICO)
+// =========================================
+function renderizarBotonesPayPal() {
+  const contenedor = document.getElementById('paypal-button-container');
+  if (!contenedor) return;
+  
+  // Limpiar botones renderizados anteriormente
+  contenedor.innerHTML = '';
+
+  if (typeof paypal !== 'undefined') {
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        const precioLimpio = parseFloat(productoSeleccionado.precio.replace(/[^0-9.-]+/g, ""));
+        const total = (precioLimpio * cantidadSeleccionada).toFixed(2);
+
+        return actions.order.create({
+          purchase_units: [{
+            description: `${productoSeleccionado.nombre} (x${cantidadSeleccionada})`,
+            amount: {
+              value: total
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert(`¡Pago completado con éxito por ${details.payer.name.given_name}!`);
+          cerrarTienda();
+        });
+      },
+      onError: function(err) {
+        console.error("Error en el pago:", err);
+        alert("Ocurrió un error al procesar el pago. Por favor intenta de nuevo.");
+      }
+    }).render('#paypal-button-container');
+  }
 }
 
-function procesarPago() {
-  if (!productoSeleccionado) return;
-  const texto = `¡Hola! Quiero comprar ${cantidadProducto} unidad(es) de ${productoSeleccionado.nombre} (${productoSeleccionado.precio})`;
-  const urlWhatsApp = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-  window.open(urlWhatsApp, '_blank');
+// =========================================
+// CARRUSEL DE GALERÍA
+// =========================================
+let fotoActualIndex = 0;
+
+function moverCarrusel(direccion) {
+  const fotos = document.querySelectorAll('.foto-carrusel');
+  const indicadores = document.querySelectorAll('.indicador');
+  
+  if (fotos.length === 0) return;
+
+  fotos[fotoActualIndex].classList.remove('activa');
+  if (indicadores[fotoActualIndex]) indicadores[fotoActualIndex].classList.remove('activo');
+
+  fotoActualIndex += direccion;
+
+  if (fotoActualIndex < 0) fotoActualIndex = fotos.length - 1;
+  if (fotoActualIndex >= fotos.length) fotoActualIndex = 0;
+
+  fotos[fotoActualIndex].classList.add('activa');
+  if (indicadores[fotoActualIndex]) indicadores[fotoActualIndex].classList.add('activo');
 }
