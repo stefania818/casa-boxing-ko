@@ -170,12 +170,12 @@
         <h4>Comentarios</h4>
         <!-- Widget gratuito de comentarios (Cusdis / Disqus) -->
         <div class="cusdis_thread"
-          data-host="https://cusdis.com"
-          data-app-id="AQUÍ_VA_TU_APP_ID"
-          data-page-id="post-1"
-          data-page-url="https://casa-boxing-ko.netlify.app#comunidad"
-          data-page-title="Entrenamiento de Sparring y Técnica">
-        </div>
+  data-host="https://cusdis.com"
+  data-app-id="3dd99e1a-9425-487a-95a3-c79c71aebdf2"
+  data-page-id="post-1"
+  data-page-url="https://casa-boxing-ko.netlify.app#comunidad"
+  data-page-title="Entrenamiento de Sparring y Técnica">
+</div>
       </div>
     </article>
   </div>
@@ -389,40 +389,9 @@
     <p>© 2026 Casa Boxing KO. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- =========================
-       JAVASCRIPT DEL CARRUSEL
-  ========================== -->
-  <script>
-    let indiceFoto = 0;
 
-    function mostrarFoto(indice) {
-      const fotos = document.querySelectorAll(".foto-carrusel");
-      const indicadores = document.querySelectorAll(".indicador");
 
-      if (!fotos.length) return;
-
-      fotos.forEach((foto) => foto.classList.remove("activa"));
-      indicadores.forEach((indicador) => indicador.classList.remove("activo"));
-
-      indiceFoto = indice;
-      fotos[indiceFoto].classList.add("activa");
-      if (indicadores[indiceFoto]) {
-        indicadores[indiceFoto].classList.add("activo");
-      }
-    }
-
-    function moverCarrusel(direccion) {
-      const fotos = document.querySelectorAll(".foto-carrusel");
-      if (!fotos.length) return;
-
-      indiceFoto += direccion;
-
-      if (indiceFoto >= fotos.length) indiceFoto = 0;
-      if (indiceFoto < 0) indiceFoto = fotos.length - 1;
-
-      mostrarFoto(indiceFoto);
-    }
-  </script>
+  
   <script src="script.js"></script>
 
 </body>
