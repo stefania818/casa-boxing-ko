@@ -147,26 +147,42 @@
       </div>
     </section>
 
-    <!-- =========================
-         COMUNIDAD CBK
-    ========================== -->
-    <section id="comunidad" class="comunidad">
-      <h2>Nuestra Comunidad</h2>
-      <p>Espacio exclusivo de noticias y novedades.</p>
+<!-- =========================
+     COMUNIDAD CBK
+========================== -->
+<section id="comunidad" class="comunidad">
+  <h2>Nuestra Comunidad</h2>
+  <p>Espacio exclusivo de noticias y novedades.</p>
 
-      <div class="comunidad-grid-compacta">
-        <article class="post-card">
-          <span class="fecha-post">Viernes, 21 de Agosto</span>
-          <h3>Entrenamiento de Sparring y Técnica</h3>
-          <div class="post-media">
-            <!-- CORREGIDO: Imagen por defecto agregada para evitar src roto -->
-            <img src="https://i.ibb.co/pv2y0dpG/IMG-7790.jpg" alt="Entrenamiento Sparring CBK" class="post-img">
-          </div>
-          <p>Resumen del entrenamiento semanal de nuestros atletas.</p>
-        </article>
+  <!-- Contenedor donde se cargarán automáticamente las publicaciones -->
+  <div id="comunidad-feed" class="comunidad-grid-compacta">
+    <!-- Post por defecto -->
+    <article class="post-card">
+      <span class="fecha-post">Viernes, 21 de Agosto</span>
+      <h3>Entrenamiento de Sparring y Técnica</h3>
+      <div class="post-media">
+        <img src="https://i.ibb.co/pv2y0dpG/IMG-7790.jpg" alt="Entrenamiento Sparring CBK" class="post-img">
       </div>
-    </section>
+      <p>Resumen del entrenamiento semanal de nuestros atletas.</p>
 
+      <!-- SECCIÓN DE COMENTARIOS PARA VISITANTES -->
+      <div class="comentarios-seccion">
+        <h4>Comentarios</h4>
+        <!-- Widget gratuito de comentarios (Cusdis / Disqus) -->
+        <div class="cusdis_thread"
+          data-host="https://cusdis.com"
+          data-app-id="AQUÍ_VA_TU_APP_ID"
+          data-page-id="post-1"
+          data-page-url="https://casa-boxing-ko.netlify.app#comunidad"
+          data-page-title="Entrenamiento de Sparring y Técnica">
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Script para cargar el sistema de comentarios (Cusdis) -->
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
     <!-- =========================
          PLANES
     ========================== -->
