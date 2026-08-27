@@ -17,3 +17,14 @@ collections:
       - { label: "Categoría", name: "categoria", widget: "select", options: ["Guantes", "Vendas", "Equipamiento"] }
       - { label: "Imagen", name: "image", widget: "image" }
       - { label: "Descripción", name: "body", widget: "markdown" }
+collections:
+  - name: "comunidad"
+    label: "Comunidad / Noticias"
+    folder: "contenido/comunidad"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Imagen de la publicación", name: "image", widget: "image" }
+      - { label: "Contenido / Resumen", name: "body", widget: "markdown" }
