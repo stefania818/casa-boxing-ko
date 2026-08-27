@@ -154,34 +154,44 @@
   <h2>Nuestra Comunidad</h2>
   <p>Espacio exclusivo de noticias y novedades.</p>
 
-  <!-- Contenedor donde se cargarán automáticamente las publicaciones -->
+  <!-- FORMULARIO DE PUBLICACIÓN -->
+  <div class="comunidad-crear-post" style="margin-bottom: 25px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;">
+    <h3 style="margin-bottom: 10px; font-size: 1.1rem;">Crear nueva publicación</h3>
+    <input type="text" id="post-titulo" placeholder="Título de la noticia..." style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #444; background: #111; color: #fff;">
+    <textarea id="post-contenido" placeholder="Escribe tu publicación aquí..." rows="3" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #444; background: #111; color: #fff;"></textarea>
+    <button onclick="agregarNuevaPublicacion()" style="background: #e63946; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+      ➕ Publicar en la Web
+    </button>
+  </div>
+
+  <!-- FEED DE PUBLICACIONES -->
   <div id="comunidad-feed" class="comunidad-grid-compacta">
-    <!-- Post por defecto -->
-    <article class="post-card">
-      <span class="fecha-post">Viernes, 21 de Agosto</span>
-      <h3>Entrenamiento de Sparring y Técnica</h3>
-      <div class="post-media">
-        <img src="https://i.ibb.co/pv2y0dpG/IMG-7790.jpg" alt="Entrenamiento Sparring CBK" class="post-img">
+    <article class="post-card" style="border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; background: rgba(0,0,0,0.2);">
+      <span class="fecha-post" style="color: #4cc9f0; font-size: 0.85rem;">Viernes, 21 de Agosto</span>
+      <h3 style="margin: 10px 0;">Entrenamiento de Sparring y Técnica</h3>
+      <div class="post-media" style="text-align: center; margin-bottom: 15px;">
+        <img src="https://i.ibb.co/pv2y0dpG/IMG-7790.jpg" alt="Entrenamiento Sparring CBK" class="post-img" style="max-width: 100%; height: auto; border-radius: 6px;">
       </div>
       <p>Resumen del entrenamiento semanal de nuestros atletas.</p>
 
-      <!-- SECCIÓN DE COMENTARIOS PARA VISITANTES -->
+      <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+
+      <!-- COMENTARIOS -->
       <div class="comentarios-seccion">
-        <h4>Comentarios</h4>
-        <!-- Widget gratuito de comentarios (Cusdis / Disqus) -->
+        <h4 style="margin-bottom: 10px;">Comentarios</h4>
         <div class="cusdis_thread"
-  data-host="https://cusdis.com"
-  data-app-id="3dd99e1a-9425-487a-95a3-c79c71aebdf2"
-  data-page-id="post-1"
-  data-page-url="https://casa-boxing-ko.netlify.app#comunidad"
-  data-page-title="Entrenamiento de Sparring y Técnica">
-</div>
+          data-host="https://cusdis.com"
+          data-app-id="3dd99e1a-9425-487a-95a3-c79c71aebdf2"
+          data-page-id="post-1"
+          data-page-url="https://casa-boxing-ko.netlify.app#comunidad"
+          data-page-title="Entrenamiento de Sparring y Técnica">
+        </div>
       </div>
     </article>
   </div>
 </section>
 
-<!-- Script para cargar el sistema de comentarios (Cusdis) -->
+<!-- SCRIPT EXTERNO DE CUSDIS PARA COMENTARIOS -->
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
     <!-- =========================
          PLANES
