@@ -363,3 +363,52 @@ if (window.netlifyIdentity) {
     }
   });
 }
+
+//GALERIA_IMAGENES//
+      
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Cargar Logo
+  const elLogo = document.getElementById("logo-principal");
+  if (elLogo && GALERIA_IMAGENES.logo) {
+    elLogo.src = GALERIA_IMAGENES.logo;
+  }
+
+  // 2. Cargar Carrusel de fotos e Indicadores
+  const contenedorCarrusel = document.getElementById("contenedor-carrusel-fotos");
+  const contenedorIndicadores = document.getElementById("contenedor-indicadores");
+
+  if (contenedorCarrusel && GALERIA_IMAGENES.carrusel) {
+    contenedorCarrusel.innerHTML = "";
+    contenedorIndicadores.innerHTML = "";
+
+    GALERIA_IMAGENES.carrusel.forEach((foto, i) => {
+      // Crear imagen del carrusel
+      const img = document.createElement("img");
+      img.className = `foto-carrusel ${foto.activa ? "activa" : ""}`;
+      img.src = foto.src;
+      img.alt = foto.alt;
+      contenedorCarrusel.appendChild(img);
+
+      // Crear indicador
+      const ind = document.createElement("span");
+      ind.className = `indicador ${foto.activa ? "activo" : ""}`;
+      ind.setAttribute("onclick", `mostrarFoto(${i})`);
+      contenedorIndicadores.appendChild(ind);
+    });
+  }
+
+  // 3. Cargar Imagen de Comunidad
+  const imgComunidad = document.getElementById("img-post-comunidad");
+  if (imgComunidad && GALERIA_IMAGENES.comunidad.length > 0) {
+    imgComunidad.src = GALERIA_IMAGENES.comunidad[0].src;
+  }
+
+  // 4. Cargar Imágenes de la Tienda
+  const imgGuantes = document.getElementById("img-tienda-guantes");
+  const imgVendas = document.getElementById("img-tienda-vendas");
+  const imgBucales = document.getElementById("img-tienda-bucales");
+
+  if (imgGuantes) imgGuantes.src = GALERIA_IMAGENES.tienda.guantes;
+  if (imgVendas) imgVendas.src = GALERIA_IMAGENES.tienda.vendas;
+  if (imgBucales) imgBucales.src = GALERIA_IMAGENES.tienda.bucales;
+});
