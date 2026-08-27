@@ -353,3 +353,13 @@ function agregarNuevaPublicacion() {
   
   if (window.renderCusdis) window.renderCusdis();
 }
+// Redirección de Netlify Identity tras inicio de sesión
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
