@@ -13,13 +13,12 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(
-      circle at top,
-      #17233a 0%,
-      #0b1220 45%,
-      #050b15 100%
-    );
+  background: radial-gradient(
+    circle at top,
+    #17233a 0%,
+    #0b1220 45%,
+    #050b15 100%
+  );
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
@@ -56,7 +55,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 25px;
-  background: rgba(7, 16, 30, 0.90);
+  background: rgba(7, 16, 30, 0.9);
   border: 1px solid var(--borde);
   border-radius: 20px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
@@ -248,7 +247,11 @@ main {
 .hero-imagen {
   position: relative;
   min-height: 410px;
-  background: radial-gradient(circle at center, rgba(37, 199, 245, 0.12), transparent 50%);
+  background: radial-gradient(
+    circle at center,
+    rgba(37, 199, 245, 0.12),
+    transparent 50%
+  );
 }
 
 .hero-imagen::before {
@@ -259,8 +262,8 @@ main {
     -15deg,
     transparent 0px,
     transparent 65px,
-    rgba(255,255,255,0.08) 66px,
-    rgba(255,255,255,0.08) 72px
+    rgba(255, 255, 255, 0.08) 66px,
+    rgba(255, 255, 255, 0.08) 72px
   );
   opacity: 0.7;
 }
@@ -271,7 +274,7 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 150px;
-  filter: drop-shadow(0 20px 20px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.5));
   opacity: 0.85;
 }
 
@@ -287,13 +290,8 @@ main {
   margin-bottom: 25px;
 }
 
-/* CORRECCIÓN: Permitir flujo vertical normal para navegación por scroll */
 main > section {
   display: block;
-}
-
-main > section#inicio {
-  display: grid;
 }
 
 /* =========================================
@@ -412,7 +410,7 @@ main > section#inicio {
   height: 42px;
   border-radius: 50%;
   border: none;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0, 0, 0, 0.65);
   color: white;
   font-size: 22px;
   cursor: pointer;
@@ -630,7 +628,7 @@ main > section#inicio {
 }
 
 /* =========================================
-   TIENDA OFICIAL & MODAL
+   TIENDA OFICIAL & MODAL (CORREGIDO)
 ========================================= */
 
 .tienda {
@@ -693,15 +691,13 @@ main > section#inicio {
   background: var(--rosa-oscuro);
 }
 
-/* MODAL SUPERPUESTO (3 NIVELES) */
-
+/* MODAL CORREGIDO: Garantiza superposición y animación */
 .modal-tienda {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.85) !important;
   backdrop-filter: blur(5px);
-  z-index: 1000;
-  display: flex;
+  z-index: 99999 !important;
   align-items: center;
   justify-content: center;
   padding: 20px;
@@ -715,7 +711,9 @@ main > section#inicio {
   width: 100%;
   padding: 25px;
   position: relative;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .boton-cerrar-temu {
@@ -725,8 +723,9 @@ main > section#inicio {
   background: transparent;
   border: none;
   color: var(--texto-secundario);
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
+  z-index: 10;
 }
 
 .card-categoria-nivel1 {
@@ -759,6 +758,9 @@ main > section#inicio {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 5px;
 }
 
 .card-modelo {
@@ -806,7 +808,7 @@ main > section#inicio {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   color: #fff;
   border: none;
   width: 20px;
@@ -815,8 +817,12 @@ main > section#inicio {
   cursor: pointer;
 }
 
-.btn-mini-izq { left: 2px; }
-.btn-mini-der { right: 2px; }
+.btn-mini-izq {
+  left: 2px;
+}
+.btn-mini-der {
+  right: 2px;
+}
 
 .titulo-producto-temu {
   font-size: 16px;
@@ -1087,6 +1093,9 @@ main > section#inicio {
   }
   .categoria-card {
     width: 100%;
+  }
+  .grilla-modelos {
+    grid-template-columns: 1fr;
   }
   .footer {
     width: calc(100% - 20px);
