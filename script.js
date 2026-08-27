@@ -223,7 +223,39 @@ function cambiarCantidad(delta) {
 }
 
 // ==========================================
-// 
+//  JAVASCRIPT DEL CARRUSEL
+// ==========================================
+  <script>
+    let indiceFoto = 0;
+
+    function mostrarFoto(indice) {
+      const fotos = document.querySelectorAll(".foto-carrusel");
+      const indicadores = document.querySelectorAll(".indicador");
+
+      if (!fotos.length) return;
+
+      fotos.forEach((foto) => foto.classList.remove("activa"));
+      indicadores.forEach((indicador) => indicador.classList.remove("activo"));
+
+      indiceFoto = indice;
+      fotos[indiceFoto].classList.add("activa");
+      if (indicadores[indiceFoto]) {
+        indicadores[indiceFoto].classList.add("activo");
+      }
+    }
+
+    function moverCarrusel(direccion) {
+      const fotos = document.querySelectorAll(".foto-carrusel");
+      if (!fotos.length) return;
+
+      indiceFoto += direccion;
+
+      if (indiceFoto >= fotos.length) indiceFoto = 0;
+      if (indiceFoto < 0) indiceFoto = fotos.length - 1;
+
+      mostrarFoto(indiceFoto);
+
+
 // ==========================================
 // 6. PROCESO DE COMPRA AUTOMATIZADO
 // ==========================================
