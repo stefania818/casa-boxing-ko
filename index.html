@@ -293,11 +293,22 @@
             </div>
 
             <!-- BOTONES DE PAGO AUTOMÁTICO DE PAYPAL -->
-            <div id="paypal-button-container" style="margin-top: 15px;"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <div class="resumen-compra">
+
+  <div class="resumen-linea">
+    <span>Total:</span>
+
+    <strong id="totalProducto">
+      $0.00
+    </strong>
+  </div>
+
+</div>
+
+<div
+  id="paypal-button-container"
+  style="margin-top: 15px;"
+></div>
 
     <!-- REDES SOCIALES -->
     <section id="redes" class="seccion redes">
@@ -345,8 +356,8 @@
   </footer>
 
   <!-- SDK de PayPal para Cobro Automático -->
-  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
-
+<script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=USD&components=buttons"></script>
+  
   <!-- Archivos del proyecto -->
   <script src="galeria-datos.js"></script>
   <script src="script.js"></script>
