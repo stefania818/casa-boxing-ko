@@ -33,8 +33,13 @@
       <a href="#redes">Redes</a>
     </nav>
 
-    <a href="#tienda" class="boton-carrito" aria-label="Ver Tienda">🛒</a>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <button
+  type="button"
+  class="boton-carrito"
+  onclick="abrirModal()"
+  aria-label="Abrir tienda">
+  🛒
+</button>
   </header>
 
   <main>
@@ -356,15 +361,10 @@
   </footer>
 
   <!-- SDK de PayPal para Cobro Automático -->
-<script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=USD&components=buttons"></script>
-  
-  <!-- Archivos del proyecto -->
-  <script src="galeria-datos.js"></script>
-  <script src="script.js"></script>
-
-<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  
+            
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD&intent=capture"></script>
+            
 </body>
+            
 
 </html>
