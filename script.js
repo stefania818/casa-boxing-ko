@@ -476,24 +476,17 @@ function verDetalleProducto(categoria, index) {
     cantidadSeleccionada;
 
 
-  // Foto
+actualizarFotoMini();
 
-  actualizarFotoMini();
+cargarColores();
 
+cargarTallas();
 
-  // Colores
+// Actualizar resumen
+actualizarResumenPedido();
 
-  cargarColores();
-
-
-  // Tallas
-
-  cargarTallas();
-
-
-  // Pago
-
-  renderizarBotonesPayPal();
+// Mostrar botones de pago
+renderizarBotonesPayPal();
 
 }
 
@@ -651,24 +644,19 @@ function cargarTallas() {
 
 function seleccionarOpcion(elemento, tipo) {
 
-  const contenedor =
-    elemento.parentElement;
-
+  const contenedor = elemento.parentElement;
 
   const botones =
     contenedor.querySelectorAll(".btn-opcion");
 
-
   botones.forEach(btn => {
-
     btn.classList.remove("activa");
-
   });
-
 
   elemento.classList.add("activa");
 
 
+  // Selección de color
   if (tipo === "color") {
 
     colorSeleccionado =
@@ -677,12 +665,23 @@ function seleccionarOpcion(elemento, tipo) {
   }
 
 
+  // Selección de talla / medida / onzas
   if (tipo === "talla") {
 
     tallaSeleccionada =
       elemento.innerText;
 
   }
+
+
+  // Actualizar resumen
+  actualizarResumenPedido();
+
+
+  // Actualizar PayPal
+  renderizarBotonesPayPal();
+
+}
 
 
   // Actualizar PayPal
@@ -727,6 +726,11 @@ function cambiarCantidad(delta) {
   }
 
 
+  // Actualizar resumen
+  actualizarResumenPedido();
+
+
+  // Actualizar pago
   renderizarBotonesPayPal();
 
 }
@@ -953,6 +957,83 @@ function renderizarBotonesPayPal() {
   );
 
 }
+
+// ======================================================
+// RESUMEN DEL PEDIDO
+// ======================================================
+
+function actualizarResumenPedido() {
+
+  if (!productoSeleccionado) return;
+
+
+  const producto =
+    document.getElementById("resumenProducto");
+
+  const color =
+    document.getElementById("resumenColor");
+
+  const talla =
+    document.getElementById("resumenTalla");
+
+  const cantidad =
+    document.getElementById("resumenCantidad");
+
+  const total =
+    document.getElementById("resumenTotal");
+
+
+  if (producto) {
+
+    producto.innerText =
+      productoSeleccionado.nombre;
+
+  }
+
+
+  if (color) {
+
+    color.innerText =
+      colorSeleccionado || "No seleccionado";
+
+  }
+
+
+  if (talla) {
+
+    talla.innerText =
+      tallaSeleccionada || "No seleccionada";
+
+  }
+
+
+  if (cantidad) {
+
+    cantidad.innerText =
+      cantidadSeleccionada;
+
+  }
+
+
+  if (total) {
+
+    const totalCompra =
+      productoSeleccionado.precio *
+      cantidadSeleccionada;
+
+    total.innerText =
+      "$" + totalCompra.toFixed(2);
+
+  }
+
+}
+
+
+
+
+
+
+
 
 
 // ======================================================
