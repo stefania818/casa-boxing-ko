@@ -1,24 +1,28 @@
-// ======================================================
-// CASA BOXING KO - TIENDA
-// ======================================================
+// =========================================================
+// CASA BOXING KO
+// script.js - TIENDA + PAYPAL + GALERÍA
+// =========================================================
 
-// ======================================================
+
+// =========================================================
 // INVENTARIO
-// ======================================================
+// =========================================================
 
 const inventario = {
 
-  // ----------------------------------------------------
+  // -------------------------------------------------------
   // GUANTES
-  // ----------------------------------------------------
+  // -------------------------------------------------------
   guantes: [
 
     {
-      nombre: "Guantes Everlast",
+      id: "guantes-everlast-pro",
+      nombre: "Guantes Everlast Pro",
       precio: 35.00,
 
       fotos: [
-        "/assets/tienda/guantes/everlast/37bc54d3-0472-43a3-926e-e58bb6a9758a.jpg"
+        "assets/uploads/guantes/everlast-pro-1.jpg",
+        "assets/uploads/guantes/everlast-pro-2.jpg"
       ],
 
       colores: [
@@ -28,40 +32,44 @@ const inventario = {
       ],
 
       tallas: [
-        "10 oz",
         "12 oz",
         "14 oz",
         "16 oz"
       ]
     },
 
+
     {
-      nombre: "Guantes Venum Clásico",
+      id: "guantes-venum-challenger",
+      nombre: "Guantes Venum Challenger",
       precio: 45.00,
 
       fotos: [
-        "/assets/tienda/guantes/venum/venum-clasico.jpg"
+        "assets/uploads/guantes/venum-challenger-1.jpg",
+        "assets/uploads/guantes/venum-challenger-2.jpg"
       ],
 
       colores: [
-        "Negro",
-        "Negro/Blanco"
+        "Negro/Blanco",
+        "Oro/Negro"
       ],
 
       tallas: [
-        "10 oz",
         "12 oz",
         "14 oz",
         "16 oz"
       ]
     },
 
+
     {
+      id: "guantes-venum-elite",
       nombre: "Guantes Venum Elite",
       precio: 55.00,
 
       fotos: [
-        "/assets/tienda/guantes/venum/venum-elite.jpg"
+        "assets/uploads/guantes/venum-elite-1.jpg",
+        "assets/uploads/guantes/venum-elite-2.jpg"
       ],
 
       colores: [
@@ -71,24 +79,28 @@ const inventario = {
       ],
 
       tallas: [
-        "10 oz",
         "12 oz",
         "14 oz",
         "16 oz"
       ]
     },
 
+
     {
+      id: "guantes-venum-prime",
       nombre: "Guantes Venum Prime",
       precio: 65.00,
 
       fotos: [
-        "/assets/tienda/guantes/venum/venum-prime.jpg"
+        "assets/uploads/guantes/venum-prime-1.jpg",
+        "assets/uploads/guantes/venum-prime-2.jpg",
+        "assets/uploads/guantes/venum-prime-3.jpg"
       ],
 
       colores: [
         "Negro",
         "Rojo",
+        "Azul",
         "Blanco"
       ],
 
@@ -103,17 +115,19 @@ const inventario = {
   ],
 
 
-  // ----------------------------------------------------
+  // -------------------------------------------------------
   // VENDAS
-  // ----------------------------------------------------
+  // -------------------------------------------------------
   vendas: [
 
     {
+      id: "vendas-everlast",
       nombre: "Vendas Everlast",
       precio: 8.00,
 
       fotos: [
-        "/assets/tienda/vendas/vendas-everlast.jpeg"
+        "assets/uploads/vendas/everlast-1.jpg",
+        "assets/uploads/vendas/everlast-2.jpg"
       ],
 
       colores: [
@@ -125,69 +139,58 @@ const inventario = {
 
       tallas: [
         "3 metros",
-        "5 metros"
+        "5 metros",
+        "7 metros"
       ]
     },
 
+
     {
+      id: "vendas-venum",
       nombre: "Vendas Venum",
       precio: 10.00,
 
       fotos: [
-        "/assets/tienda/vendas/vendas-venum.jpeg"
+        "assets/uploads/vendas/venum-1.jpg",
+        "assets/uploads/vendas/venum-2.jpg"
       ],
 
       colores: [
         "Negro",
         "Rojo",
         "Azul",
-        "Blanco"
+        "Rosa"
       ],
 
       tallas: [
         "3 metros",
-        "5 metros"
+        "5 metros",
+        "7 metros"
       ]
     }
 
   ],
 
 
-  // ----------------------------------------------------
+  // -------------------------------------------------------
   // BUCALES
-  // ----------------------------------------------------
+  // -------------------------------------------------------
   bucales: [
 
     {
-      nombre: "Bucal Doble",
-      precio: 15.00,
-
-      fotos: [
-        "/assets/tienda/bucales/bucal-doble-mor.jpg"
-      ],
-
-      colores: [
-        "Negro",
-        "Transparente"
-      ],
-
-      tallas: [
-        "Adulto",
-        "Juvenil"
-      ]
-    },
-
-    {
-      nombre: "Bucal Everlast",
+      id: "bucal-doble-mord",
+      nombre: "Bucal Doble-Mor",
       precio: 12.00,
 
       fotos: [
-        "/assets/tienda/bucales/bucal-everlast.jpg"
+        "assets/uploads/bucales/doble-mor-1.jpg",
+        "assets/uploads/bucales/doble-mor-2.jpg"
       ],
 
       colores: [
+        "Transparente",
         "Negro",
-        "Transparente"
+        "Rojo"
       ],
 
       tallas: [
@@ -196,36 +199,65 @@ const inventario = {
       ]
     },
 
+
     {
+      id: "bucal-everlast",
+      nombre: "Bucal Everlast",
+      precio: 15.00,
+
+      fotos: [
+        "assets/uploads/bucales/everlast-1.jpg",
+        "assets/uploads/bucales/everlast-2.jpg"
+      ],
+
+      colores: [
+        "Transparente",
+        "Negro",
+        "Rojo"
+      ],
+
+      tallas: [
+        "Adulto",
+        "Juvenil"
+      ]
+    },
+
+
+    {
+      id: "bucal-reforzado",
       nombre: "Bucal Reforzado",
       precio: 18.00,
 
       fotos: [
-        "/assets/tienda/bucales/bucal-reforzado.jpg"
+        "assets/uploads/bucales/reforzado-1.jpg",
+        "assets/uploads/bucales/reforzado-2.jpg"
       ],
 
       colores: [
-        "Negro",
-        "Transparente"
+        "Transparente",
+        "Negro"
       ],
 
       tallas: [
-        "Adulto",
-        "Juvenil"
+        "Adulto"
       ]
     },
 
+
     {
+      id: "bucal-venum",
       nombre: "Bucal Venum",
       precio: 20.00,
 
       fotos: [
-        "/assets/tienda/bucales/bucal-venum.jpg"
+        "assets/uploads/bucales/venum-1.jpg",
+        "assets/uploads/bucales/venum-2.jpg"
       ],
 
       colores: [
         "Negro",
-        "Transparente"
+        "Rojo",
+        "Blanco"
       ],
 
       tallas: [
@@ -235,325 +267,547 @@ const inventario = {
     }
 
   ]
+
 };
 
 
-// ======================================================
+// =========================================================
 // VARIABLES DE ESTADO
-// ======================================================
+// =========================================================
 
 let categoriaActual = "";
+
 let productoSeleccionado = null;
+
 let productoIndexActual = 0;
 
 let fotoIndiceActual = 0;
+
 let cantidadSeleccionada = 1;
 
 let colorSeleccionado = "";
+
 let tallaSeleccionada = "";
 
 
-// ======================================================
-// ABRIR TIENDA
-// ======================================================
+// =========================================================
+// ABRIR MODAL
+// =========================================================
 
 function abrirModal(categoria = "") {
 
-  const modal = document.getElementById("modalTienda");
+  const modal =
+    document.getElementById("modalTienda");
 
   if (!modal) return;
+
 
   modal.style.display = "flex";
 
+
   if (categoria) {
+
     abrirNivel2(categoria);
+
   } else {
+
     irANivel1();
+
   }
+
 }
 
 
-// ======================================================
-// CERRAR TIENDA
-// ======================================================
+// =========================================================
+// CERRAR MODAL
+// =========================================================
 
 function cerrarTienda() {
 
-  const modal = document.getElementById("modalTienda");
+  const modal =
+    document.getElementById("modalTienda");
 
   if (!modal) return;
+
 
   modal.style.display = "none";
 
 }
 
 
-// ======================================================
+// =========================================================
 // NIVEL 1
 // CATEGORÍAS
-// ======================================================
+// =========================================================
 
 function irANivel1() {
 
-  const nivel1 = document.getElementById("vistaNivel1");
-  const nivel2 = document.getElementById("vistaNivel2");
-  const nivel3 = document.getElementById("vistaNivel3");
+  const nivel1 =
+    document.getElementById("vistaNivel1");
+
+  const nivel2 =
+    document.getElementById("vistaNivel2");
+
+  const nivel3 =
+    document.getElementById("vistaNivel3");
+
 
   if (nivel1) nivel1.style.display = "block";
+
   if (nivel2) nivel2.style.display = "none";
+
   if (nivel3) nivel3.style.display = "none";
 
 }
 
 
-// ======================================================
+// =========================================================
 // NIVEL 2
 // MODELOS DE UNA CATEGORÍA
-// ======================================================
+// =========================================================
 
 function abrirNivel2(categoria) {
 
-  categoriaActual = categoria;
+  if (!inventario[categoria]) {
 
-  const nivel1 = document.getElementById("vistaNivel1");
-  const nivel2 = document.getElementById("vistaNivel2");
-  const nivel3 = document.getElementById("vistaNivel3");
+    console.error(
+      "La categoría no existe:",
+      categoria
+    );
 
-  if (nivel1) nivel1.style.display = "none";
-  if (nivel2) nivel2.style.display = "block";
-  if (nivel3) nivel3.style.display = "none";
-
-
-  // Título
-
-  const titulo = document.getElementById("tituloCategoriaNivel2");
-
-  if (titulo) {
-
-    const nombres = {
-      guantes: "Guantes de Boxeo",
-      vendas: "Vendas",
-      bucales: "Protectores Bucales"
-    };
-
-    titulo.innerText = nombres[categoria] || categoria;
+    return;
 
   }
 
 
-  // Contenedor
+  categoriaActual = categoria;
 
-  const grilla = document.getElementById("grillaModelosNivel2");
+
+  const nivel1 =
+    document.getElementById("vistaNivel1");
+
+  const nivel2 =
+    document.getElementById("vistaNivel2");
+
+  const nivel3 =
+    document.getElementById("vistaNivel3");
+
+
+  if (nivel1) nivel1.style.display = "none";
+
+  if (nivel2) nivel2.style.display = "block";
+
+  if (nivel3) nivel3.style.display = "none";
+
+
+  const titulo =
+    document.getElementById(
+      "tituloCategoriaNivel2"
+    );
+
+
+  const nombresCategorias = {
+
+    guantes: "GUANTES DE BOXEO",
+
+    vendas: "VENDAS",
+
+    bucales: "PROTECTORES BUCALES"
+
+  };
+
+
+  if (titulo) {
+
+    titulo.innerText =
+      nombresCategorias[categoria] ||
+      categoria.toUpperCase();
+
+  }
+
+
+  const grilla =
+    document.getElementById(
+      "grillaModelosNivel2"
+    );
+
 
   if (!grilla) return;
+
 
   grilla.innerHTML = "";
 
 
-  const productos = inventario[categoria] || [];
+  const productos =
+    inventario[categoria];
 
 
-  if (productos.length === 0) {
+  if (!productos ||
+      productos.length === 0) {
 
     grilla.innerHTML = `
       <p style="
         grid-column:1/-1;
         text-align:center;
         color:#cbd5e1;
-        padding:30px;
       ">
         Próximamente más productos.
       </p>
     `;
 
     return;
+
   }
 
 
-  // Crear tarjetas
+  productos.forEach(
+    (producto, index) => {
 
-  productos.forEach((producto, index) => {
-
-    const foto = producto.fotos?.[0] || "";
-
-    const tarjeta = document.createElement("div");
-
-    tarjeta.className = "card-modelo";
-
-    tarjeta.onclick = function () {
-
-      verDetalleProducto(categoria, index);
-
-    };
+      const foto =
+        producto.fotos &&
+        producto.fotos.length > 0
+          ? producto.fotos[0]
+          : "";
 
 
-    tarjeta.innerHTML = `
-
-      <img
-        src="${foto}"
-        alt="${producto.nombre}"
-        class="img-modelo"
-      >
-
-      <h4>
-        ${producto.nombre}
-      </h4>
-
-      <span class="precio-modelo">
-        $${producto.precio.toFixed(2)}
-      </span>
-
-    `;
+      const tarjeta =
+        document.createElement("div");
 
 
-    grilla.appendChild(tarjeta);
+      tarjeta.className =
+        "card-modelo";
 
-  });
+
+      tarjeta.onclick =
+        function () {
+
+          verDetalleProducto(
+            categoria,
+            index
+          );
+
+        };
+
+
+      tarjeta.innerHTML = `
+
+        <img
+          src="${foto}"
+          alt="${producto.nombre}"
+          class="img-modelo"
+          onerror="this.style.opacity='0.3'"
+        >
+
+        <h4
+          style="
+            margin:8px 0 4px;
+            color:#fff;
+            font-size:13px;
+          "
+        >
+          ${producto.nombre}
+        </h4>
+
+        <span
+          style="
+            color:#38bdf8;
+            font-weight:bold;
+            font-size:14px;
+          "
+        >
+          $${producto.precio.toFixed(2)}
+        </span>
+
+      `;
+
+
+      grilla.appendChild(tarjeta);
+
+    }
+  );
 
 }
 
 
-// ======================================================
-// VOLVER AL NIVEL 2
-// ======================================================
+// =========================================================
+// VOLVER A NIVEL 2
+// =========================================================
 
 function irANivel2() {
 
-  abrirNivel2(categoriaActual);
+  if (!categoriaActual) {
+
+    irANivel1();
+
+    return;
+
+  }
+
+
+  abrirNivel2(
+    categoriaActual
+  );
 
 }
 
 
-// ======================================================
+// =========================================================
 // NIVEL 3
 // DETALLE DEL PRODUCTO
-// ======================================================
+// =========================================================
 
-function verDetalleProducto(categoria, index) {
+function verDetalleProducto(
+  categoria,
+  index
+) {
 
-  categoriaActual = categoria;
+  if (!inventario[categoria]) return;
 
-  productoIndexActual = index;
 
-  productoSeleccionado = inventario[categoria][index];
+  if (!inventario[categoria][index]) return;
+
+
+  productoSeleccionado =
+    inventario[categoria][index];
+
+
+  productoIndexActual =
+    index;
+
+
+  categoriaActual =
+    categoria;
+
 
   fotoIndiceActual = 0;
 
   cantidadSeleccionada = 1;
 
 
-  // Reiniciar opciones
-
   colorSeleccionado =
-    productoSeleccionado.colores?.[0] || "";
+    productoSeleccionado.colores &&
+    productoSeleccionado.colores.length > 0
+      ? productoSeleccionado.colores[0]
+      : "";
+
 
   tallaSeleccionada =
-    productoSeleccionado.tallas?.[0] || "";
+    productoSeleccionado.tallas &&
+    productoSeleccionado.tallas.length > 0
+      ? productoSeleccionado.tallas[0]
+      : "";
 
 
-  // Cambiar niveles
+  // -------------------------------------------------------
+  // CAMBIAR DE NIVEL
+  // -------------------------------------------------------
 
-  document.getElementById("vistaNivel2").style.display = "none";
+  const nivel2 =
+    document.getElementById(
+      "vistaNivel2"
+    );
 
-  document.getElementById("vistaNivel3").style.display = "block";
-
-
-  // Nombre
-
-  document.getElementById("tituloModeloNivel3").innerText =
-    productoSeleccionado.nombre;
-
-
-  // Precio
-
-  document.getElementById("precioModeloNivel3").innerText =
-    "$" + productoSeleccionado.precio.toFixed(2);
+  const nivel3 =
+    document.getElementById(
+      "vistaNivel3"
+    );
 
 
-  // Cantidad
+  if (nivel2) nivel2.style.display = "none";
 
-  document.getElementById("numCantidad").innerText =
-    cantidadSeleccionada;
+  if (nivel3) nivel3.style.display = "block";
 
 
-actualizarFotoMini();
+  // -------------------------------------------------------
+  // NOMBRE
+  // -------------------------------------------------------
 
-cargarColores();
+  const titulo =
+    document.getElementById(
+      "tituloModeloNivel3"
+    );
 
-cargarTallas();
 
-// Actualizar resumen
-actualizarResumenPedido();
+  if (titulo) {
 
-// Mostrar botones de pago
-renderizarBotonesPayPal();
+    titulo.innerText =
+      productoSeleccionado.nombre;
+
+  }
+
+
+  // -------------------------------------------------------
+  // PRECIO
+  // -------------------------------------------------------
+
+  const precio =
+    document.getElementById(
+      "precioModeloNivel3"
+    );
+
+
+  if (precio) {
+
+    precio.innerText =
+      "$" +
+      productoSeleccionado.precio.toFixed(2);
+
+  }
+
+
+  // -------------------------------------------------------
+  // CANTIDAD
+  // -------------------------------------------------------
+
+  const cantidad =
+    document.getElementById(
+      "numCantidad"
+    );
+
+
+  if (cantidad) {
+
+    cantidad.innerText =
+      cantidadSeleccionada;
+
+  }
+
+
+  // -------------------------------------------------------
+  // FOTOS
+  // -------------------------------------------------------
+
+  actualizarFotoMini();
+
+
+  // -------------------------------------------------------
+  // COLORES
+  // -------------------------------------------------------
+
+  cargarColores();
+
+
+  // -------------------------------------------------------
+  // TALLAS / ONZAS / MEDIDAS
+  // -------------------------------------------------------
+
+  cargarTallas();
+
+
+  // -------------------------------------------------------
+  // TEXTO DE MEDIDA
+  // -------------------------------------------------------
+
+  actualizarTituloMedida();
+
+
+  // -------------------------------------------------------
+  // RESUMEN
+  // -------------------------------------------------------
+
+  actualizarResumenPedido();
+
+
+  // -------------------------------------------------------
+  // PAYPAL
+  // -------------------------------------------------------
+
+  renderizarBotonesPayPal();
 
 }
 
 
-// ======================================================
+// =========================================================
 // CARGAR COLORES
-// ======================================================
+// =========================================================
 
 function cargarColores() {
 
   const contenedor =
-    document.getElementById("contenedorColores");
+    document.getElementById(
+      "contenedorColores"
+    );
+
 
   if (!contenedor) return;
+
 
   contenedor.innerHTML = "";
 
 
   const colores =
-    productoSeleccionado.colores || [];
+    productoSeleccionado &&
+    productoSeleccionado.colores
+      ? productoSeleccionado.colores
+      : [];
 
 
-  colores.forEach((color, index) => {
+  if (colores.length === 0) {
 
-    const boton =
-      document.createElement("button");
+    contenedor.innerHTML =
+      "<span style='color:#94a3b8'>No disponible</span>";
 
-    boton.className =
-      "btn-opcion" +
-      (index === 0 ? " activa" : "");
+    return;
 
-    boton.innerText = color;
+  }
 
 
-    boton.onclick = function () {
+  colores.forEach(
+    (color, index) => {
 
-      seleccionarOpcion(
-        boton,
-        "color"
+      const boton =
+        document.createElement("button");
+
+
+      boton.type = "button";
+
+      boton.className =
+        "btn-opcion";
+
+
+      if (index === 0) {
+
+        boton.classList.add(
+          "activa"
+        );
+
+      }
+
+
+      boton.innerText = color;
+
+
+      boton.onclick =
+        function () {
+
+          seleccionarOpcion(
+            boton,
+            "color"
+          );
+
+        };
+
+
+      contenedor.appendChild(
+        boton
       );
 
-      colorSeleccionado = color;
-
-    };
-
-
-    contenedor.appendChild(boton);
-
-  });
+    }
+  );
 
 }
 
 
-// ======================================================
+// =========================================================
 // CARGAR TALLAS / MEDIDAS
-// ======================================================
+// =========================================================
 
 function cargarTallas() {
 
   const contenedor =
-    document.getElementById("contenedorTallas");
-
-  const titulo =
-    document.getElementById("tituloSecTallas");
-
-  const seccion =
-    document.getElementById("secTallas");
+    document.getElementById(
+      "contenedorTallas"
+    );
 
 
   if (!contenedor) return;
@@ -563,137 +817,196 @@ function cargarTallas() {
 
 
   const tallas =
-    productoSeleccionado.tallas || [];
+    productoSeleccionado &&
+    productoSeleccionado.tallas
+      ? productoSeleccionado.tallas
+      : [];
 
-
-  // Si el producto no tiene medidas,
-  // ocultamos completamente esta sección.
 
   if (tallas.length === 0) {
 
-    if (seccion)
-      seccion.style.display = "none";
+    contenedor.innerHTML =
+      "<span style='color:#94a3b8'>No disponible</span>";
 
     return;
 
   }
 
 
-  if (seccion)
-    seccion.style.display = "block";
+  tallas.forEach(
+    (talla, index) => {
+
+      const boton =
+        document.createElement("button");
 
 
-  // Cambiar texto dependiendo de la categoría
+      boton.type = "button";
 
-  if (titulo) {
-
-    if (categoriaActual === "guantes") {
-
-      titulo.innerText =
-        "Selecciona Onzas:";
-
-    } else if (categoriaActual === "vendas") {
-
-      titulo.innerText =
-        "Selecciona Longitud:";
-
-    } else {
-
-      titulo.innerText =
-        "Selecciona Medida:";
-
-    }
-
-  }
+      boton.className =
+        "btn-opcion";
 
 
-  tallas.forEach((talla, index) => {
+      if (index === 0) {
 
-    const boton =
-      document.createElement("button");
+        boton.classList.add(
+          "activa"
+        );
 
-    boton.className =
-      "btn-opcion" +
-      (index === 0 ? " activa" : "");
-
-    boton.innerText = talla;
+      }
 
 
-    boton.onclick = function () {
+      boton.innerText = talla;
 
-      seleccionarOpcion(
-        boton,
-        "talla"
+
+      boton.onclick =
+        function () {
+
+          seleccionarOpcion(
+            boton,
+            "talla"
+          );
+
+        };
+
+
+      contenedor.appendChild(
+        boton
       );
 
-      tallaSeleccionada = talla;
-
-    };
-
-
-    contenedor.appendChild(boton);
-
-  });
+    }
+  );
 
 }
 
 
-// ======================================================
+// =========================================================
+// TÍTULO DE MEDIDA
+// =========================================================
+
+function actualizarTituloMedida() {
+
+  const titulo =
+    document.getElementById(
+      "tituloSecTallas"
+    );
+
+
+  if (!titulo) return;
+
+
+  if (!categoriaActual) {
+
+    titulo.innerText =
+      "Selecciona Medida:";
+
+    return;
+
+  }
+
+
+  if (categoriaActual === "guantes") {
+
+    titulo.innerText =
+      "Selecciona Onzas:";
+
+  }
+
+  else if (
+    categoriaActual === "vendas"
+  ) {
+
+    titulo.innerText =
+      "Selecciona Longitud:";
+
+  }
+
+  else if (
+    categoriaActual === "bucales"
+  ) {
+
+    titulo.innerText =
+      "Selecciona Talla:";
+
+  }
+
+  else {
+
+    titulo.innerText =
+      "Selecciona Medida:";
+
+  }
+
+}
+
+
+// =========================================================
 // SELECCIONAR OPCIÓN
-// ======================================================
+// =========================================================
 
-function seleccionarOpcion(elemento, tipo) {
+function seleccionarOpcion(
+  elemento,
+  tipo
+) {
 
-  const contenedor = elemento.parentElement;
-
-  const botones =
-    contenedor.querySelectorAll(".btn-opcion");
-
-  botones.forEach(btn => {
-    btn.classList.remove("activa");
-  });
-
-  elemento.classList.add("activa");
+  if (!elemento) return;
 
 
-  // Selección de color
+  const contenedor =
+    elemento.parentElement;
+
+
+  if (contenedor) {
+
+    const botones =
+      contenedor.querySelectorAll(
+        ".btn-opcion"
+      );
+
+
+    botones.forEach(
+      boton => {
+
+        boton.classList.remove(
+          "activa"
+        );
+
+      }
+    );
+
+  }
+
+
+  elemento.classList.add(
+    "activa"
+  );
+
+
   if (tipo === "color") {
 
     colorSeleccionado =
-      elemento.innerText;
+      elemento.innerText.trim();
 
   }
 
 
-  // Selección de talla / medida / onzas
   if (tipo === "talla") {
 
     tallaSeleccionada =
-      elemento.innerText;
+      elemento.innerText.trim();
 
   }
 
 
-  // Actualizar resumen
   actualizarResumenPedido();
 
-
-  // Actualizar PayPal
   renderizarBotonesPayPal();
 
 }
 
 
-  // Actualizar PayPal
-
-  renderizarBotonesPayPal();
-
-}
-
-
-// ======================================================
-// CANTIDAD
-// ======================================================
+// =========================================================
+// CAMBIAR CANTIDAD
+// =========================================================
 
 function cambiarCantidad(delta) {
 
@@ -715,7 +1028,9 @@ function cambiarCantidad(delta) {
 
 
   const cantidad =
-    document.getElementById("numCantidad");
+    document.getElementById(
+      "numCantidad"
+    );
 
 
   if (cantidad) {
@@ -726,49 +1041,59 @@ function cambiarCantidad(delta) {
   }
 
 
-  // Actualizar resumen
   actualizarResumenPedido();
 
-
-  // Actualizar pago
   renderizarBotonesPayPal();
 
 }
 
 
-// ======================================================
+// =========================================================
 // FOTO PRINCIPAL
-// ======================================================
+// =========================================================
 
 function actualizarFotoMini() {
 
-  const imagen =
-    document.getElementById("imgPrincipal");
+  const img =
+    document.getElementById(
+      "imgPrincipal"
+    );
+
+
+  if (!img) return;
 
 
   if (
-    !imagen ||
     !productoSeleccionado ||
-    !productoSeleccionado.fotos
-  ) return;
+    !productoSeleccionado.fotos ||
+    productoSeleccionado.fotos.length === 0
+  ) {
+
+    img.removeAttribute("src");
+
+    return;
+
+  }
 
 
-  imagen.src =
-    productoSeleccionado.fotos[fotoIndiceActual];
+  img.src =
+    productoSeleccionado.fotos[
+      fotoIndiceActual
+    ];
 
 }
 
 
-// ======================================================
+// =========================================================
 // CAMBIAR FOTO
-// ======================================================
+// =========================================================
 
 function cambiarFotoMini(delta) {
 
   if (
     !productoSeleccionado ||
     !productoSeleccionado.fotos ||
-    productoSeleccionado.fotos.length <= 1
+    productoSeleccionado.fotos.length === 0
   ) {
 
     return;
@@ -804,163 +1129,9 @@ function cambiarFotoMini(delta) {
 }
 
 
-// ======================================================
-// PAYPAL
-// ======================================================
-
-function renderizarBotonesPayPal() {
-
-  const contenedor =
-    document.getElementById(
-      "paypal-button-container"
-    );
-
-
-  if (!contenedor) return;
-
-
-  contenedor.innerHTML = "";
-
-
-  if (
-    typeof paypal === "undefined" ||
-    !productoSeleccionado
-  ) {
-
-    return;
-
-  }
-
-
-  const precio =
-    Number(productoSeleccionado.precio);
-
-
-  const total =
-    (precio * cantidadSeleccionada)
-    .toFixed(2);
-
-
-  paypal.Buttons({
-
-    style: {
-
-      layout: "vertical",
-
-      shape: "rect",
-
-      label: "paypal"
-
-    },
-
-
-    createOrder:
-      function(data, actions) {
-
-        return actions.order.create({
-
-          purchase_units: [
-
-            {
-
-              description:
-                productoSeleccionado.nombre,
-
-              amount: {
-
-                currency_code: "USD",
-
-                value: total
-
-              }
-
-            }
-
-          ]
-
-        });
-
-      },
-
-
-    onApprove:
-      function(data, actions) {
-
-        return actions.order
-          .capture()
-          .then(function(details) {
-
-
-            alert(
-              "¡Pago realizado correctamente!"
-            );
-
-
-            console.log(
-              "Compra:",
-              {
-                producto:
-                  productoSeleccionado.nombre,
-
-                color:
-                  colorSeleccionado,
-
-                talla:
-                  tallaSeleccionada,
-
-                cantidad:
-                  cantidadSeleccionada,
-
-                total:
-                  total,
-
-                cliente:
-                  details.payer.name
-              }
-            );
-
-
-            cerrarTienda();
-
-          });
-
-      },
-
-
-    onCancel:
-      function() {
-
-        console.log(
-          "El cliente canceló el pago."
-        );
-
-      },
-
-
-    onError:
-      function(error) {
-
-        console.error(
-          "Error PayPal:",
-          error
-        );
-
-
-        alert(
-          "No se pudo procesar el pago. Intenta nuevamente."
-        );
-
-      }
-
-  }).render(
-    "#paypal-button-container"
-  );
-
-}
-
-// ======================================================
+// =========================================================
 // RESUMEN DEL PEDIDO
-// ======================================================
+// =========================================================
 
 function actualizarResumenPedido() {
 
@@ -968,19 +1139,33 @@ function actualizarResumenPedido() {
 
 
   const producto =
-    document.getElementById("resumenProducto");
+    document.getElementById(
+      "resumenProducto"
+    );
+
 
   const color =
-    document.getElementById("resumenColor");
+    document.getElementById(
+      "resumenColor"
+    );
+
 
   const talla =
-    document.getElementById("resumenTalla");
+    document.getElementById(
+      "resumenTalla"
+    );
+
 
   const cantidad =
-    document.getElementById("resumenCantidad");
+    document.getElementById(
+      "resumenCantidad"
+    );
+
 
   const total =
-    document.getElementById("resumenTotal");
+    document.getElementById(
+      "resumenTotal"
+    );
 
 
   if (producto) {
@@ -994,7 +1179,8 @@ function actualizarResumenPedido() {
   if (color) {
 
     color.innerText =
-      colorSeleccionado || "No seleccionado";
+      colorSeleccionado ||
+      "No seleccionado";
 
   }
 
@@ -1002,7 +1188,8 @@ function actualizarResumenPedido() {
   if (talla) {
 
     talla.innerText =
-      tallaSeleccionada || "No seleccionada";
+      tallaSeleccionada ||
+      "No seleccionada";
 
   }
 
@@ -1021,29 +1208,211 @@ function actualizarResumenPedido() {
       productoSeleccionado.precio *
       cantidadSeleccionada;
 
+
     total.innerText =
-      "$" + totalCompra.toFixed(2);
+      "$" +
+      totalCompra.toFixed(2);
 
   }
 
 }
 
 
+// =========================================================
+// PAYPAL
+// =========================================================
+
+function renderizarBotonesPayPal() {
+
+  const contenedor =
+    document.getElementById(
+      "paypal-button-container"
+    );
 
 
+  if (!contenedor) return;
 
 
+  contenedor.innerHTML = "";
 
 
+  if (!productoSeleccionado) return;
 
-// ======================================================
-// CARRUSEL DE GALERÍA
-// ======================================================
+
+  if (
+    typeof paypal ===
+    "undefined"
+  ) {
+
+    contenedor.innerHTML = `
+      <p style="
+        color:#f87171;
+        text-align:center;
+        font-size:12px;
+      ">
+        PayPal no está disponible.
+      </p>
+    `;
+
+    return;
+
+  }
+
+
+  paypal.Buttons({
+
+    // -----------------------------------------------------
+    // CREAR ORDEN
+    // -----------------------------------------------------
+
+    createOrder:
+      function(data, actions) {
+
+        const total =
+          (
+            productoSeleccionado.precio *
+            cantidadSeleccionada
+          ).toFixed(2);
+
+
+        return actions.order.create({
+
+          purchase_units: [
+
+            {
+
+              description:
+                productoSeleccionado.nombre,
+
+              amount: {
+
+                currency_code: "USD",
+
+                value: total
+
+              },
+
+              items: [
+
+                {
+
+                  name:
+                    productoSeleccionado.nombre,
+
+                  unit_amount: {
+
+                    currency_code: "USD",
+
+                    value:
+                      productoSeleccionado.precio
+                        .toFixed(2)
+
+                  },
+
+                  quantity:
+                    String(
+                      cantidadSeleccionada
+                    )
+
+                }
+
+              ]
+
+            }
+
+          ]
+
+        });
+
+      },
+
+
+    // -----------------------------------------------------
+    // PAGO APROBADO
+    // -----------------------------------------------------
+
+    onApprove:
+      function(data, actions) {
+
+        return actions.order
+          .capture()
+          .then(
+            function(details) {
+
+              const nombre =
+                details.payer &&
+                details.payer.name &&
+                details.payer.name.given_name
+                  ? details.payer.name.given_name
+                  : "cliente";
+
+
+              alert(
+                "¡Pago completado con éxito, " +
+                nombre +
+                "!"
+              );
+
+
+              cerrarTienda();
+
+            }
+          );
+
+      },
+
+
+    // -----------------------------------------------------
+    // ERROR
+    // -----------------------------------------------------
+
+    onError:
+      function(error) {
+
+        console.error(
+          "Error de PayPal:",
+          error
+        );
+
+
+        alert(
+          "Ocurrió un error al procesar el pago. " +
+          "Por favor intenta nuevamente."
+        );
+
+      },
+
+
+    // -----------------------------------------------------
+    // CANCELAR
+    // -----------------------------------------------------
+
+    onCancel:
+      function() {
+
+        console.log(
+          "El cliente canceló el pago."
+        );
+
+      }
+
+  }).render(
+    "#paypal-button-container"
+  );
+
+}
+
+
+// =========================================================
+// CARRUSEL PRINCIPAL DE GALERÍA
+// =========================================================
 
 let fotoActualIndex = 0;
 
 
-function moverCarrusel(direccion) {
+function moverCarrusel(
+  direccion
+) {
 
   const fotos =
     document.querySelectorAll(
@@ -1062,14 +1431,20 @@ function moverCarrusel(direccion) {
 
   fotos[
     fotoActualIndex
-  ].classList.remove("activa");
+  ].classList.remove(
+    "activa"
+  );
 
 
-  if (indicadores[fotoActualIndex]) {
+  if (
+    indicadores[fotoActualIndex]
+  ) {
 
     indicadores[
       fotoActualIndex
-    ].classList.remove("activo");
+    ].classList.remove(
+      "activo"
+    );
 
   }
 
@@ -1077,7 +1452,9 @@ function moverCarrusel(direccion) {
   fotoActualIndex += direccion;
 
 
-  if (fotoActualIndex < 0) {
+  if (
+    fotoActualIndex < 0
+  ) {
 
     fotoActualIndex =
       fotos.length - 1;
@@ -1086,7 +1463,8 @@ function moverCarrusel(direccion) {
 
 
   if (
-    fotoActualIndex >= fotos.length
+    fotoActualIndex >=
+    fotos.length
   ) {
 
     fotoActualIndex = 0;
@@ -1096,54 +1474,137 @@ function moverCarrusel(direccion) {
 
   fotos[
     fotoActualIndex
-  ].classList.add("activa");
+  ].classList.add(
+    "activa"
+  );
 
 
-  if (indicadores[fotoActualIndex]) {
+  if (
+    indicadores[fotoActualIndex]
+  ) {
 
     indicadores[
       fotoActualIndex
-    ].classList.add("activo");
+    ].classList.add(
+      "activo"
+    );
 
   }
 
 }
 
 
-// ======================================================
-// CARGAR IMÁGENES DEL SITIO
-// ======================================================
+// =========================================================
+// CERRAR MODAL AL HACER CLICK FUERA
+// =========================================================
+
+document.addEventListener(
+  "click",
+  function(event) {
+
+    const modal =
+      document.getElementById(
+        "modalTienda"
+      );
+
+
+    if (!modal) return;
+
+
+    if (
+      event.target === modal
+    ) {
+
+      cerrarTienda();
+
+    }
+
+  }
+);
+
+
+// =========================================================
+// TECLA ESC PARA CERRAR
+// =========================================================
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      cerrarTienda();
+
+    }
+
+  }
+);
+
+
+// =========================================================
+// CARGAR IMÁGENES PRINCIPALES
+// DESDE galeria-datos.js
+// =========================================================
 
 document.addEventListener(
   "DOMContentLoaded",
   function() {
 
-
-    // Logo
-
-    const logo =
-      document.getElementById(
-        "logo-principal"
-      );
-
+    // -----------------------------------------------------
+    // LOGO
+    // -----------------------------------------------------
 
     if (
-      logo &&
-      typeof GALERIA_IMAGENES !== "undefined"
+      typeof GALERIA_IMAGENES !==
+      "undefined"
     ) {
 
-      logo.src =
-        GALERIA_IMAGENES.logo;
+      const logo =
+        document.getElementById(
+          "logo-principal"
+        );
 
-    }
+
+      if (
+        logo &&
+        GALERIA_IMAGENES.logo
+      ) {
+
+        logo.src =
+          GALERIA_IMAGENES.logo;
+
+      }
 
 
-    // Imágenes de categorías
+      // ---------------------------------------------------
+      // IMAGEN COMUNIDAD
+      // ---------------------------------------------------
 
-    if (
-      typeof GALERIA_IMAGENES !== "undefined"
-    ) {
+      const imagenComunidad =
+        document.getElementById(
+          "img-post-comunidad"
+        );
 
+
+      if (
+        imagenComunidad &&
+        GALERIA_IMAGENES.comunidad &&
+        GALERIA_IMAGENES.comunidad.length
+      ) {
+
+        imagenComunidad.src =
+          GALERIA_IMAGENES
+            .comunidad[0]
+            .src;
+
+      }
+
+
+      // ---------------------------------------------------
+      // IMÁGENES DE CATEGORÍAS
+      // ---------------------------------------------------
 
       const imgGuantes =
         document.getElementById(
@@ -1163,197 +1624,53 @@ document.addEventListener(
         );
 
 
-      if (imgGuantes) {
-
-        imgGuantes.src =
-          GALERIA_IMAGENES.tienda.guantes;
-
-      }
-
-
-      if (imgVendas) {
-
-        imgVendas.src =
-          GALERIA_IMAGENES.tienda.vendas;
-
-      }
-
-
-      if (imgBucales) {
-
-        imgBucales.src =
-          GALERIA_IMAGENES.tienda.bucales;
-
-      }
-
-
-      // Imagen de comunidad
-
-      const imagenComunidad =
-        document.getElementById(
-          "img-post-comunidad"
-        );
-
-
       if (
-        imagenComunidad &&
-        GALERIA_IMAGENES.comunidad.length
+        GALERIA_IMAGENES.tienda
       ) {
 
-        imagenComunidad.src =
+        if (
+          imgGuantes &&
           GALERIA_IMAGENES
-            .comunidad[0]
-            .src;
+            .tienda
+            .guantes
+        ) {
 
-      }
+          imgGuantes.src =
+            GALERIA_IMAGENES
+              .tienda
+              .guantes;
 
-    }
-
-
-    // ==================================================
-    // CREAR GALERÍA
-    // ==================================================
-
-    if (
-      typeof GALERIA_IMAGENES !== "undefined"
-    ) {
-
-      const contenedorFotos =
-        document.getElementById(
-          "contenedor-carrusel-fotos"
-        );
+        }
 
 
-      const contenedorIndicadores =
-        document.getElementById(
-          "contenedor-indicadores"
-        );
+        if (
+          imgVendas &&
+          GALERIA_IMAGENES
+            .tienda
+            .vendas
+        ) {
+
+          imgVendas.src =
+            GALERIA_IMAGENES
+              .tienda
+              .vendas;
+
+        }
 
 
-      if (
-        contenedorFotos &&
-        contenedorIndicadores
-      ) {
+        if (
+          imgBucales &&
+          GALERIA_IMAGENES
+            .tienda
+            .bucales
+        ) {
 
-        contenedorFotos.innerHTML = "";
+          imgBucales.src =
+            GALERIA_IMAGENES
+              .tienda
+              .bucales;
 
-        contenedorIndicadores.innerHTML = "";
-
-
-        GALERIA_IMAGENES
-          .carrusel
-          .forEach(
-            function(foto, index) {
-
-
-              const imagen =
-                document.createElement("img");
-
-
-              imagen.src =
-                foto.src;
-
-
-              imagen.alt =
-                foto.alt;
-
-
-              imagen.className =
-                "foto-carrusel";
-
-
-              if (
-                index === 0 ||
-                foto.activa
-              ) {
-
-                imagen.classList.add(
-                  "activa"
-                );
-
-                fotoActualIndex =
-                  index;
-
-              }
-
-
-              contenedorFotos
-                .appendChild(imagen);
-
-
-              const indicador =
-                document.createElement("span");
-
-
-              indicador.className =
-                "indicador";
-
-
-              if (
-                index === fotoActualIndex
-              ) {
-
-                indicador.classList.add(
-                  "activo"
-                );
-
-              }
-
-
-              indicador.onclick =
-                function() {
-
-                  const fotos =
-                    document.querySelectorAll(
-                      ".foto-carrusel"
-                    );
-
-
-                  const indicadores =
-                    document.querySelectorAll(
-                      ".indicador"
-                    );
-
-
-                  fotos[
-                    fotoActualIndex
-                  ].classList.remove(
-                    "activa"
-                  );
-
-
-                  indicadores[
-                    fotoActualIndex
-                  ].classList.remove(
-                    "activo"
-                  );
-
-
-                  fotoActualIndex =
-                    index;
-
-
-                  fotos[
-                    fotoActualIndex
-                  ].classList.add(
-                    "activa"
-                  );
-
-
-                  indicadores[
-                    fotoActualIndex
-                  ].classList.add(
-                    "activo"
-                  );
-
-                };
-
-
-              contenedorIndicadores
-                .appendChild(indicador);
-
-            }
-          );
+        }
 
       }
 
